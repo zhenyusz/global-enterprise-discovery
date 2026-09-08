@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Enterprise Discovery — Cybersecurity Sales Engineer Simulation</title>
+<style>
+  :root{
+    --navy:#0B1F3A;
+    --navy-2:#12315a;
+    --teal:#0F766E;
+    --teal-d:#0c5f58;
+    --ink:#1E293B;
+    --muted:#5A6b7b;
+    --line:#E2E8F0;
+    --line-2:#CBD5E1;
+    --bg:#FFFFFF;
+    --soft:#F5F7FA;
+    --amber:#B45309;
+    --amber-bg:#FDF6EC;
+    --green:#166534;
+    --green-bg:#EBF5EE;
+    --red:#B91C1C;
+    --red-bg:#FBECEC;
+    --teal-bg:#EAF3F2;
+    --sys:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --col:720px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sys);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+  /* ---------- top chrome ---------- */
+  .scrollbar-track{position:fixed;top:0;left:0;right:0;height:4px;background:transparent;z-index:60}
+  .scrollbar-fill{height:100%;width:0;background:var(--teal)}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:1040px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px 22px}
+  .lesson-name{font-weight:700;font-size:1rem;color:var(--navy);line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lesson-name small{display:block;font-weight:400;font-size:.76rem;color:var(--muted)}
+  .topbar .spacer{flex:1}
+  .proto-badge{font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--navy);background:#E7ECF3;padding:4px 9px;border-radius:20px;white-space:nowrap}
+  .menu-btn{font-family:var(--sys);font-size:.85rem;color:var(--navy);background:#fff;border:1px solid var(--line-2);padding:8px 15px;border-radius:22px;cursor:pointer}
+  .menu-btn:hover{background:var(--soft)}
+
+  /* ---------- cover ---------- */
+  .cover{position:relative;background:var(--navy);color:#fff;overflow:hidden}
+  .cover::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,.06) 1px, transparent 0);background-size:22px 22px;pointer-events:none}
+  .cover::after{content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;border:2px solid rgba(15,118,110,.35);border-radius:50%;pointer-events:none}
+  .cover-inner{position:relative;max-width:var(--col);margin:0 auto;padding:76px 22px 66px}
+  .cover .kicker{display:inline-block;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:#7FD1C8;border:1px solid rgba(127,209,200,.4);padding:5px 12px;border-radius:20px;margin-bottom:20px}
+  .cover h1{font-size:clamp(2rem,5.4vw,3.05rem);line-height:1.08;margin:0 0 14px;font-weight:800;letter-spacing:-.015em}
+  .cover .sub{font-size:1.16rem;color:#C7D3E2;max-width:52ch;margin:0 0 26px}
+  .cover .meta{display:flex;flex-wrap:wrap;gap:10px 22px;color:#AEBED2;font-size:.92rem;margin-bottom:30px}
+  .cover .meta span{display:flex;align-items:center;gap:7px}
+  .cover .meta .dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex:0 0 auto}
+  .begin-btn{font-family:var(--sys);font-weight:700;font-size:1.02rem;background:var(--teal);color:#fff;border:none;border-radius:8px;padding:14px 28px;cursor:pointer}
+  .begin-btn:hover{background:var(--teal-d)}
+
+  /* ---------- layout / blocks ---------- */
+  .container{max-width:var(--col);margin:0 auto;padding:0 22px}
+  .part{padding:52px 0 8px}
+  .part[hidden]{display:none}
+  .part-label{font-size:.82rem;font-weight:700;letter-spacing:.02em;color:var(--teal);margin:0 0 6px}
+  .part h2{font-size:clamp(1.5rem,3.6vw,2rem);line-height:1.16;margin:0 0 .35em;font-weight:800;letter-spacing:-.01em}
+  .part h3{font-size:1.12rem;margin:1.5em 0 .5em;font-weight:700}
+  .lead{font-size:1.12rem;color:var(--muted);max-width:60ch}
+  p{margin:.7em 0}
+  .divider{height:1px;background:var(--line);margin:40px 0}
+
+  .block{margin:22px 0}
+  .callout{border-radius:10px;padding:20px 22px;margin:22px 0;border:1px solid var(--line)}
+  .callout .lab{font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin:0 0 7px}
+  .callout p{margin:.25em 0}
+  .callout.objective{background:var(--teal-bg);border-color:#BFD9D6}
+  .callout.objective .lab{color:var(--teal)}
+  .callout.coach{background:var(--amber-bg);border-color:#EBD6B4}
+  .callout.coach .lab{color:var(--amber)}
+  .callout.task{background:var(--soft)}
+  .callout.task .lab{color:var(--muted)}
+
+  /* full-bleed statement band */
+  .statement{background:var(--navy);color:#fff;padding:44px 0;margin:34px 0}
+  .statement .container{max-width:640px}
+  .statement .lab{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7FD1C8;margin:0 0 10px}
+  .statement .q{font-size:1.3rem;line-height:1.45;font-weight:500;margin:0}
+  .statement .who{margin-top:12px;color:#AEBED2;font-size:.92rem}
+
+  .twin{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0}
+  @media(max-width:600px){.twin{grid-template-columns:1fr}}
+  .card{border:1px solid var(--line);border-radius:10px;padding:18px 20px;background:#fff;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+  .card h3{margin:.1em 0 .5em;font-size:1rem}
+  .card.owns{border-top:4px solid var(--green)}
+  .card.ownsnot{border-top:4px solid var(--line-2)}
+  ul.clean{margin:.4em 0;padding-left:1.2em}
+  ul.clean li{margin:.35em 0}
+
+  /* participants */
+  .participants{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:22px 0}
+  .participants .prow{display:flex;justify-content:space-between;gap:12px;padding:11px 18px;border-bottom:1px solid var(--line);font-size:.96rem}
+  .participants .prow:last-child{border-bottom:none}
+  .participants .pname{font-weight:600}
+  .participants .prole{color:var(--muted)}
+
+  /* interactive card (knowledge check / matching / planner) */
+  .qcard{border:1px solid var(--line);border-radius:12px;padding:22px 22px;background:#fff;box-shadow:0 2px 10px rgba(15,23,42,.06);margin:22px 0}
+  .qcard .qhead{font-weight:700;font-size:1.05rem;margin:0 0 4px}
+  .qcard .qsub{color:var(--muted);font-size:.95rem;margin:0 0 14px}
+  fieldset{border:none;margin:0;padding:0}
+  legend{font-weight:700;margin-bottom:8px}
+  .opt{display:flex;gap:11px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line-2);border-radius:8px;margin:9px 0;cursor:pointer;background:#fff}
+  .opt:hover{border-color:var(--teal);background:var(--teal-bg)}
+  .opt input{margin-top:3px;width:18px;height:18px;accent-color:var(--teal);flex:0 0 auto}
+  .counter{font-weight:400;color:var(--muted);font-size:.88rem}
+  label.block-lab{display:block;font-weight:600;margin:14px 0 6px}
+  textarea,input[type=text]{width:100%;font-family:var(--sys);font-size:1rem;color:var(--ink);padding:11px 13px;border:1px solid var(--line-2);border-radius:8px;background:#fff}
+  textarea{resize:vertical;min-height:44px}
+
+  .btn{font-family:var(--sys);font-size:.98rem;font-weight:700;cursor:pointer;border-radius:8px;padding:12px 22px;border:none;background:var(--teal);color:#fff}
+  .btn:hover{background:var(--teal-d)}
+  .btn.secondary{background:#fff;color:var(--navy);border:1px solid var(--line-2)}
+  .btn.secondary:hover{background:var(--soft)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}
+
+  .feedback{border-radius:9px;padding:14px 16px;margin-top:16px;font-size:.98rem;display:none}
+  .feedback.show{display:block}
+  .feedback.good{background:var(--green-bg);border:1px solid #BFDDC8;color:#14512f}
+  .feedback.bad{background:var(--red-bg);border:1px solid #E8C4C4;color:#7f1d1d}
+  .feedback.info{background:var(--teal-bg);border:1px solid #BFD9D6;color:var(--teal)}
+  .feedback .ftitle{font-weight:700;margin-bottom:3px}
+  .inline-note{font-size:.92rem;margin-top:10px;min-height:1px}
+  .inline-note[data-tone=red]{color:var(--red)}
+  .inline-note[data-tone=green]{color:var(--green)}
+  .inline-note[data-tone=muted]{color:var(--muted)}
+
+  /* continue */
+  .continue-wrap{text-align:center;padding:26px 0 8px}
+  .continue-wrap[hidden]{display:none}
+  .continue-btn{font-family:var(--sys);font-weight:700;font-size:1rem;background:var(--navy);color:#fff;border:none;border-radius:8px;padding:13px 34px;cursor:pointer}
+  .continue-btn:hover{background:var(--navy-2)}
+  .continue-hint{display:block;color:var(--muted);font-size:.86rem;margin-top:9px}
+
+  /* accordion */
+  .acc{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:20px 0}
+  .acc-item+.acc-item{border-top:1px solid var(--line)}
+  .acc-head{width:100%;text-align:left;background:#fff;border:none;cursor:pointer;padding:15px 18px;display:flex;gap:14px;align-items:center;font-family:var(--sys);font-size:1.02rem;color:var(--ink)}
+  .acc-head:hover{background:var(--soft)}
+  .acc-letter{width:34px;height:34px;flex:0 0 auto;background:var(--teal);color:#fff;border-radius:8px;display:grid;place-items:center;font-weight:800}
+  .acc-head .t{flex:1}
+  .acc-head .t b{display:block}
+  .acc-head .t small{color:var(--muted);font-weight:400}
+  .acc-sign{color:var(--muted);font-weight:700;width:16px;text-align:center;font-size:1.2rem}
+  .acc-body{padding:0 18px 18px 66px;color:var(--muted)}
+  .acc-body[hidden]{display:none}
+  .listen{margin-top:10px;padding:10px 13px;background:var(--soft);border-radius:8px;color:var(--ink);font-size:.96rem}
+  .listen b{color:var(--teal)}
+
+  /* matching */
+  .match-row{padding:14px 0;border-bottom:1px solid var(--line)}
+  .match-row:last-child{border-bottom:none}
+  .lettergroup{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .lettergroup button{width:42px;height:42px;border-radius:8px;border:1px solid var(--line-2);background:#fff;font-weight:800;color:var(--navy);cursor:pointer;font-size:1.05rem}
+  .lettergroup button[aria-pressed=true]{background:var(--teal);color:#fff;border-color:var(--teal)}
+  .row-mark{font-size:.9rem;margin-top:8px;font-weight:600;display:none}
+  .match-row.correct .row-mark{display:block;color:var(--green)}
+  .match-row.wrong .row-mark{display:block;color:var(--red)}
+
+  /* simulation */
+  .meeting-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;align-items:start;margin:20px 0}
+  @media(max-width:720px){.meeting-grid{grid-template-columns:1fr}}
+  .meeting{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;box-shadow:0 2px 10px rgba(15,23,42,.06)}
+  .meeting-head{background:var(--navy);color:#fff;font-size:.8rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:11px 16px}
+  .dialog-scroll{max-height:330px;overflow:auto;padding:16px}
+  .dlg{border:1px solid var(--line);border-left-width:4px;border-radius:0 8px 8px 0;padding:11px 14px;margin:0 0 11px}
+  .dlg:last-child{margin-bottom:0}
+  .dlg .spk{font-size:.75rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;margin-bottom:4px}
+  .dlg.customer{border-left-color:var(--navy);background:#F2F6FB}
+  .dlg.customer .spk{color:var(--navy)}
+  .dlg.learner{border-left-color:var(--teal);background:var(--teal-bg)}
+  .dlg.learner .spk{color:var(--teal)}
+  .dlg.coach{border-left-color:var(--amber);background:var(--amber-bg)}
+  .dlg.coach .spk{color:var(--amber)}
+  .meeting-input{border-top:1px solid var(--line);padding:16px}
+  .meeting-input label{font-weight:600;display:block;margin-bottom:8px;font-size:.95rem}
+  .meeting-input .turnmeta{color:var(--muted);font-weight:400}
+  .mi-row{display:flex;gap:9px;align-items:flex-start}
+  .mi-row input{flex:1}
+  .coachnotes{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;position:sticky;top:78px}
+  .coachnotes .cn-head{background:var(--amber-bg);color:var(--amber);font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:11px 16px;border-bottom:1px solid var(--line)}
+  .cn-body{padding:8px 16px}
+  .snrow{display:flex;gap:11px;padding:11px 0;border-bottom:1px dashed var(--line)}
+  .snrow:last-child{border-bottom:none}
+  .snrow .ltr{width:22px;flex:0 0 auto;font-weight:800;color:var(--line-2)}
+  .snrow.done .ltr{color:var(--green)}
+  .snrow .ttl{font-weight:600;font-size:.94rem}
+  .snrow .cap{font-size:.84rem;color:var(--muted)}
+  .snrow.done .cap{color:var(--ink)}
+
+  /* scorecard */
+  .scorehead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin:6px 0 4px}
+  .bignum{font-size:2.9rem;font-weight:800;color:var(--navy);line-height:1}
+  .bignum small{font-size:1.05rem;color:var(--muted);font-weight:400}
+  .band{font-weight:700;padding:6px 14px;border-radius:22px;font-size:.9rem;border:1px solid transparent}
+  .band.ready{background:var(--green-bg);color:var(--green);border-color:#BFDDC8}
+  .band.dev{background:var(--teal-bg);color:var(--teal);border-color:#BFD9D6}
+  .band.needs{background:var(--amber-bg);color:var(--amber);border-color:#E7CFA8}
+  .scoretable{width:100%;border-collapse:collapse;margin:18px 0}
+  .scoretable td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:.96rem}
+  .scoretable td:first-child{width:44%}
+  .sbar{height:10px;background:var(--soft);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+  .sbar span{display:block;height:100%;background:var(--teal);width:0}
+  .sval{font-variant-numeric:tabular-nums;color:var(--muted);text-align:right;width:44px}
+  .evidence{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-top:14px;background:var(--soft)}
+  .evidence p{margin:.5em 0}
+  .evidence .lead2{font-weight:700}
+
+  .takeaways{margin:12px 0}
+  .closing{border-left:4px solid var(--teal);background:var(--teal-bg);border-radius:0 10px 10px 0;padding:18px 22px;color:var(--navy);font-size:1.12rem;margin:24px 0}
+
+  .legal-foot{background:var(--navy);color:#AEBED2;font-size:.8rem;text-align:center;padding:16px 22px;margin-top:40px}
+
+  /* menu overlay */
+  .overlay{position:fixed;inset:0;background:rgba(11,31,58,.55);display:flex;align-items:center;justify-content:center;padding:20px;z-index:70}
+  .overlay[hidden]{display:none}
+  .menu-card{background:#fff;border-radius:12px;max-width:460px;width:100%;padding:22px 24px;box-shadow:0 16px 44px rgba(11,31,58,.4)}
+  .menu-card h2{margin:0 0 4px;font-size:1.2rem}
+  .menu-card .msub{color:var(--muted);font-size:.9rem;margin:0 0 12px}
+  .menu-list{list-style:none;margin:0;padding:0}
+  .menu-list button{width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:9px;padding:12px 15px;margin:7px 0;cursor:pointer;font-family:var(--sys);font-size:.98rem;color:var(--ink);display:flex;gap:13px;align-items:center}
+  .menu-list button:hover{background:var(--soft)}
+  .menu-list button:disabled{opacity:.5;cursor:not-allowed}
+  .menu-list .mnum{width:28px;height:28px;flex:0 0 auto;background:var(--teal-bg);color:var(--teal);border-radius:7px;display:grid;place-items:center;font-weight:800;font-size:.9rem}
+  .menu-actions{display:flex;justify-content:flex-end;margin-top:14px}
+
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  :focus-visible{outline:3px solid #0891b2;outline-offset:2px;border-radius:5px}
+</style>
+</head>
+<body>
+
+<div class="scrollbar-track" aria-hidden="true"><div class="scrollbar-fill" id="scrollFill"></div></div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="lesson-name">Global Enterprise Discovery<small>Cybersecurity Sales Engineer Simulation</small></div>
+    <div class="spacer"></div>
+    <span class="proto-badge">Portfolio Prototype</span>
+    <button class="menu-btn" id="menuBtn" aria-haspopup="dialog">Contents</button>
+  </div>
+</header>
+
+<!-- ============ COVER ============ -->
+<section class="cover" aria-labelledby="coverTitle">
+  <div class="cover-inner">
+    <span class="kicker">Technical Enablement &middot; Interactive Lesson</span>
+    <h1 id="coverTitle">Discovery before solution</h1>
+    <p class="sub">Learn how strong Sales Engineers open a global enterprise conversation &mdash; then practice it in a live, six-turn customer simulation.</p>
+    <div class="meta">
+      <span><span class="dot"></span>About 15 minutes</span>
+      <span><span class="dot"></span>6 parts</span>
+      <span><span class="dot"></span>Hands-on customer simulation</span>
+    </div>
+    <button class="begin-btn" id="beginBtn">Begin the lesson</button>
+  </div>
+</section>
+
+<main id="lesson">
+
+  <!-- ============ PART 1 ============ -->
+  <section class="part" id="part-1" aria-labelledby="h1">
+    <div class="container">
+      <p class="part-label">Part 1 &middot; Orientation</p>
+      <h2 id="h1" tabindex="-1">Why discovery comes first</h2>
+      <p class="lead">This lesson is for new and developing Sales Engineers who lead technical discovery with large, global enterprises &mdash; where stakeholder complexity, regional differences, and hybrid environments make the first conversation hard.</p>
+
+      <div class="callout objective">
+        <p class="lab">Learning objective</p>
+        <p>Scope a broad customer request, uncover the relevant workflow and stakeholders, and agree on an appropriate next technical action.</p>
+      </div>
+    </div>
+
+    <div class="statement">
+      <div class="container">
+        <p class="lab">The customer&rsquo;s opening</p>
+        <p class="q">&ldquo;We need better visibility into security risks across the company. We have too many tools and too many findings, but no consistent way to determine what needs immediate action.&rdquo;</p>
+        <p class="who">&mdash; Priya Raman, Global CISO (fictional)</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="callout task">
+        <p class="lab">Your task</p>
+        <p>Across the next five parts you will learn a discovery method, plan your approach, run the customer meeting, and receive a performance scorecard with targeted practice.</p>
+      </div>
+      <div class="callout coach">
+        <p class="lab">Coach&rsquo;s note</p>
+        <p>Under pressure, the instinct is to reach for a product answer early. This lesson builds the opposite habit: understand first, so you can tell what a good solution must accomplish.</p>
+      </div>
+    </div>
+
+    <div class="continue-wrap" id="cw-1">
+      <button class="continue-btn" data-reveal="2">Continue</button>
+    </div>
+  </section>
+
+  <!-- ============ PART 2 ============ -->
+  <section class="part" id="part-2" aria-labelledby="h2" hidden>
+    <div class="container">
+      <div class="divider"></div>
+      <p class="part-label">Part 2 &middot; The Sales Engineer&rsquo;s role</p>
+      <h2 id="h2" tabindex="-1">Know what you own</h2>
+      <p class="lead">Discovery works best when you know which parts of the deal are yours to lead.</p>
+
+      <div class="twin">
+        <div class="card owns">
+          <h3>The SE leads</h3>
+          <ul class="clean">
+            <li>Technical discovery and technical fit</li>
+            <li>Architecture discussion</li>
+            <li>Tailored demonstrations</li>
+            <li>Technical validation</li>
+            <li>Proof-of-value success criteria</li>
+          </ul>
+        </div>
+        <div class="card ownsnot">
+          <h3>The SE does not primarily own</h3>
+          <ul class="clean">
+            <li>Pricing</li>
+            <li>Contract negotiation</li>
+            <li>Legal approval</li>
+            <li>Post-sale implementation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="qcard">
+        <p class="qhead">Knowledge check</p>
+        <p class="qsub">Choose the best answer, then check it.</p>
+        <fieldset>
+          <legend>During a deal, which is primarily the Sales Engineer&rsquo;s responsibility?</legend>
+          <label class="opt"><input type="radio" name="q-role" value="a"><span>Negotiating final contract pricing with procurement.</span></label>
+          <label class="opt"><input type="radio" name="q-role" value="b"><span>Leading technical discovery and defining proof-of-value success criteria.</span></label>
+          <label class="opt"><input type="radio" name="q-role" value="c"><span>Approving legal terms and the data-processing agreement.</span></label>
+          <label class="opt"><input type="radio" name="q-role" value="d"><span>Staffing and owning the post-sale implementation.</span></label>
+        </fieldset>
+        <div class="actions"><button class="btn" id="roleSubmit">Check answer</button></div>
+        <div class="feedback" id="roleFb"><div class="ftitle" id="roleFbTitle"></div><div id="roleFbBody"></div></div>
+      </div>
+    </div>
+
+    <div class="continue-wrap" id="cw-2" hidden>
+      <button class="continue-btn" data-reveal="3">Continue</button>
+      <span class="continue-hint">Answer the knowledge check to continue.</span>
+    </div>
+  </section>
+
+  <!-- ============ PART 3 ============ -->
+  <section class="part" id="part-3" aria-labelledby="h3" hidden>
+    <div class="container">
+      <div class="divider"></div>
+      <p class="part-label">Part 3 &middot; The SCOPE framework</p>
+      <h2 id="h3" tabindex="-1">Five moves of good discovery</h2>
+      <p class="lead">A simple order of operations. Expand each move to see what to listen for, then match a question to the move it serves.</p>
+
+      <div class="acc" id="scopeAcc"></div>
+
+      <div class="qcard">
+        <p class="qhead">Match the question to its SCOPE move</p>
+        <p class="qsub">Pick the letter each question is really doing the work of, then submit.</p>
+        <div id="matchRows"></div>
+        <div class="actions">
+          <button class="btn" id="matchSubmit">Submit matches</button>
+          <button class="btn secondary" id="matchReset" type="button">Reset</button>
+        </div>
+        <p class="inline-note" id="matchNote" data-tone="red" aria-live="polite"></p>
+        <div class="feedback" id="matchFb"><div class="ftitle" id="matchFbTitle"></div><div id="matchFbBody"></div></div>
+      </div>
+    </div>
+
+    <div class="continue-wrap" id="cw-3" hidden>
+      <button class="continue-btn" data-reveal="4">Continue</button>
+      <span class="continue-hint">Submit the matching activity to continue.</span>
+    </div>
+  </section>
+
+  <!-- ============ PART 4 ============ -->
+  <section class="part" id="part-4" aria-labelledby="h4" hidden>
+    <div class="container">
+      <div class="divider"></div>
+      <p class="part-label">Part 4 &middot; Plan your discovery</p>
+      <h2 id="h4" tabindex="-1">Build your approach</h2>
+
+      <div class="callout task">
+        <p class="lab">The account</p>
+        <p><b>Apex Manufacturing Global</b> &mdash; a fictional company with 45,000 employees across 24 countries. A recent audit found inconsistent asset ownership and uneven remediation tracking across regions. The CISO has a board risk update in four months.</p>
+        <p style="font-style:italic;color:var(--ink)">&ldquo;We have too many security tools and too many findings, but we cannot consistently determine what needs immediate action.&rdquo;</p>
+      </div>
+
+      <div class="qcard">
+        <p class="qhead">Coach&rsquo;s prompt</p>
+        <p class="qsub">Before you pick questions, name what you think might really be going on.</p>
+        <label class="block-lab" for="prob1">Possible underlying problems <span class="counter">(up to three)</span></label>
+        <textarea id="prob1" rows="1" placeholder="Hypothesis 1"></textarea>
+        <textarea id="prob2" rows="1" placeholder="Hypothesis 2" style="margin-top:9px"></textarea>
+        <textarea id="prob3" rows="1" placeholder="Hypothesis 3" style="margin-top:9px"></textarea>
+
+        <label class="block-lab" style="margin-top:20px">Choose exactly three priority discovery questions <span class="counter" id="qCount">(0 of 3 selected)</span></label>
+        <div id="pqList"></div>
+
+        <label class="block-lab" style="margin-top:16px">Which stakeholders are relevant to this discovery?</label>
+        <div id="stkList"></div>
+
+        <label class="block-lab" style="margin-top:16px">What is the best next technical action?</label>
+        <div id="actList"></div>
+
+        <div class="actions"><button class="btn" id="genPlan">Generate my discovery plan</button></div>
+        <div class="feedback" id="planFb"><div class="ftitle" id="planFbTitle"></div><div id="planFbBody"></div></div>
+      </div>
+    </div>
+
+    <div class="continue-wrap" id="cw-4" hidden>
+      <button class="continue-btn" data-reveal="5">Continue</button>
+      <span class="continue-hint">Generate your plan to continue.</span>
+    </div>
+  </section>
+
+  <!-- ============ PART 5 ============ -->
+  <section class="part" id="part-5" aria-labelledby="h5" hidden>
+    <div class="container">
+      <div class="divider"></div>
+      <p class="part-label">Part 5 &middot; The customer meeting</p>
+      <h2 id="h5" tabindex="-1">Run the conversation</h2>
+      <p class="lead">You are the Sales Engineer. Ask one question per turn. The room responds to what you actually ask. Aim to cover the full SCOPE picture within six turns.</p>
+
+      <div class="participants" aria-label="Meeting participants">
+        <div class="prow"><span class="pname">Priya Raman</span><span class="prole">Global CISO</span></div>
+        <div class="prow"><span class="pname">Carlos Mendes</span><span class="prole">Director, Security Operations</span></div>
+        <div class="prow"><span class="pname">Elena Novak</span><span class="prole">VP, Global IT Operations</span></div>
+        <div class="prow"><span class="pname">Marcus Lee</span><span class="prole">Cloud Security Architect</span></div>
+        <div class="prow"><span class="pname">Hiro Tanaka</span><span class="prole">Regional Operations Leader</span></div>
+      </div>
+
+      <div class="meeting-grid">
+        <div class="meeting">
+          <div class="meeting-head">Customer Meeting</div>
+          <div class="dialog-scroll" id="dialog" aria-live="polite" aria-label="Meeting dialogue"></div>
+          <div class="meeting-input">
+            <label for="simInput">Your question <span class="turnmeta" id="turnMeta">(Turn 1 of 6)</span></label>
+            <div class="mi-row">
+              <input type="text" id="simInput" autocomplete="off" placeholder="e.g. What prompted you to look at this now?">
+              <button class="btn" id="askBtn">Ask</button>
+            </div>
+            <p class="inline-note" id="simHint" data-tone="muted" aria-live="polite"></p>
+          </div>
+        </div>
+        <aside class="coachnotes" aria-label="Coach's notes: SCOPE coverage">
+          <div class="cn-head">Coach&rsquo;s Notes &middot; SCOPE covered</div>
+          <div class="cn-body" id="scopeNotes"></div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="continue-wrap" id="cw-5" hidden>
+      <button class="continue-btn" data-reveal="6">See your results</button>
+      <span class="continue-hint">Complete all six turns to see your results.</span>
+    </div>
+  </section>
+
+  <!-- ============ PART 6 ============ -->
+  <section class="part" id="part-6" aria-labelledby="h6" hidden>
+    <div class="container">
+      <div class="divider"></div>
+      <p class="part-label">Part 6 &middot; Performance &amp; next steps</p>
+      <h2 id="h6" tabindex="-1">Your discovery scorecard</h2>
+
+      <div class="scorehead">
+        <div class="bignum" id="scoreNum">0<small>/28</small></div>
+        <div class="band" id="bandTag">&nbsp;</div>
+      </div>
+      <table class="scoretable"><tbody id="scoreBody"></tbody></table>
+      <div class="evidence" id="evidence"></div>
+      <div class="actions"><button class="btn secondary" id="copyBtn">Copy results</button><span class="inline-note" id="copyNote" data-tone="green" aria-live="polite"></span></div>
+
+      <h3>Targeted retry</h3>
+      <div class="qcard">
+        <p class="qhead" id="retryPrompt" style="font-weight:600"></p>
+        <p class="qsub">Write how you would ask this in your own words, in the flow of a real meeting.</p>
+        <label class="sr-only" for="retryInput">Your attempt</label>
+        <textarea id="retryInput" rows="2" placeholder="Your question&hellip;"></textarea>
+        <div class="actions"><button class="btn" id="retrySubmit">Submit my attempt</button></div>
+        <p class="inline-note" id="retryNote" data-tone="green" aria-live="polite"></p>
+      </div>
+
+      <h3>Lesson complete</h3>
+      <ul class="clean takeaways">
+        <li>Discovery is a sequence: understand the spark, context, workflow, pain, and evidence before proposing anything.</li>
+        <li>The SE&rsquo;s credibility comes from restraint &mdash; earning the demo by understanding the problem first.</li>
+        <li>A strong meeting ends on an agreed next technical action and a shared definition of success.</li>
+      </ul>
+      <div class="closing">&ldquo;Strong Sales Engineers do not begin by presenting a solution. They begin by understanding the customer well enough to determine what a successful solution must accomplish.&rdquo;</div>
+      <div class="actions"><button class="btn" id="restartCourse">Restart lesson</button></div>
+    </div>
+  </section>
+
+</main>
+
+<div class="legal-foot">Portfolio prototype. All organizations, personas, systems, and data are fictional. No proprietary or customer information is included.</div>
+
+<!-- menu overlay -->
+<div class="overlay" id="menuOverlay" hidden>
+  <div class="menu-card" role="dialog" aria-modal="true" aria-labelledby="menuTitle">
+    <h2 id="menuTitle">Lesson contents</h2>
+    <p class="msub">Jump to any part you have reached.</p>
+    <ul class="menu-list" id="menuList"></ul>
+    <div class="menu-actions"><button class="btn secondary" id="menuClose">Close</button></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(s,r){return (r||document).querySelector(s);};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+  function escapeHtml(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];});}
+
+  var TOTAL=6, revealed=1;
+
+  /* ---------- scroll progress ---------- */
+  function onScroll(){
+    var d=document.documentElement;
+    var max=(d.scrollHeight-d.clientHeight)||1;
+    $("#scrollFill").style.width=Math.min(100,Math.max(0,(d.scrollTop/max)*100))+"%";
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  window.addEventListener("resize",onScroll);
+
+  /* ---------- reveal ---------- */
+  function scrollToPart(n){
+    var el=$("#part-"+n); if(!el) return;
+    var head=$("#h"+n);
+    el.scrollIntoView({behavior:"smooth",block:"start"});
+    if(head){ setTimeout(function(){ try{head.focus({preventScroll:true});}catch(e){try{head.focus();}catch(_){}} },350); }
+    setTimeout(onScroll,400);
+  }
+  function revealPart(n){
+    if(n>revealed){
+      for(var i=revealed+1;i<=n;i++){ var el=$("#part-"+i); if(el) el.hidden=false; }
+      revealed=n;
+      updateMenu();
+    }
+    scrollToPart(n);
+  }
+  $$('[data-reveal]').forEach(function(b){ b.addEventListener("click",function(){ revealPart(parseInt(b.getAttribute("data-reveal"),10)); }); });
+  $("#beginBtn").addEventListener("click",function(){ scrollToPart(1); });
+
+  function showContinue(id){ var w=$("#"+id); w.hidden=false; var h=w.querySelector(".continue-hint"); if(h) h.style.display="none"; }
+
+  /* ---------- menu ---------- */
+  var TITLES={1:"Orientation",2:"The Sales Engineer\u2019s Role",3:"The SCOPE Framework",4:"Plan Your Discovery",5:"The Customer Meeting",6:"Performance & Next Steps"};
+  var menuList=$("#menuList");
+  for(var m=1;m<=TOTAL;m++){
+    (function(mm){
+      var li=document.createElement("li");
+      var b=document.createElement("button"); b.type="button";
+      b.innerHTML='<span class="mnum">'+mm+'</span><span>'+TITLES[mm]+'</span>';
+      b.addEventListener("click",function(){ if(mm<=revealed){ closeMenu(); revealPart(mm); } });
+      li.appendChild(b); menuList.appendChild(li);
+    })(m);
+  }
+  function updateMenu(){ $$("#menuList button").forEach(function(b,idx){ b.disabled=((idx+1)>revealed); }); }
+  var lastFocused=null;
+  function openMenu(){
+    lastFocused=document.activeElement;
+    var ov=$("#menuOverlay"); ov.hidden=false;
+    var f=ov.querySelector("button:not(:disabled)"); if(f) f.focus();
+    ov._h=function(e){
+      if(e.key==="Escape"){ e.preventDefault(); closeMenu(); }
+      else if(e.key==="Tab"){
+        var items=$$("button:not(:disabled)",ov); if(!items.length)return;
+        var first=items[0],last=items[items.length-1];
+        if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+        else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+      }
+    };
+    ov.addEventListener("keydown",ov._h);
+  }
+  function closeMenu(){ var ov=$("#menuOverlay"); ov.hidden=true; if(ov._h) ov.removeEventListener("keydown",ov._h); if(lastFocused){try{lastFocused.focus();}catch(e){}} }
+  $("#menuBtn").addEventListener("click",openMenu);
+  $("#menuClose").addEventListener("click",closeMenu);
+  $("#menuOverlay").addEventListener("click",function(e){ if(e.target===this) closeMenu(); });
+  updateMenu();
+
+  /* ---------- Part 2: knowledge check ---------- */
+  $("#roleSubmit").addEventListener("click",function(){
+    var sel=$('input[name="q-role"]:checked');
+    var fb=$("#roleFb");
+    if(!sel){ fb.className="feedback show info"; $("#roleFbTitle").textContent="Select an option"; $("#roleFbBody").textContent="Choose one answer, then check it."; return; }
+    if(sel.value==="b"){
+      fb.className="feedback show good"; $("#roleFbTitle").textContent="Correct";
+      $("#roleFbBody").textContent="Technical discovery, technical fit, and proof-of-value success criteria sit with the SE. Pricing, legal, and implementation are led by other roles \u2014 which is why your job in the meeting is to understand the technical problem, not to close terms.";
+      showContinue("cw-2");
+    } else {
+      fb.className="feedback show bad"; $("#roleFbTitle").textContent="Not quite";
+      $("#roleFbBody").textContent="That track is led by sales, legal, or delivery. What\u2019s missing is the SE\u2019s real center of gravity: leading technical discovery and defining what a successful proof of value must prove. Adjust your answer and check again.";
+    }
+  });
+
+  /* ---------- Part 3: SCOPE accordion ---------- */
+  var SCOPE=[
+    {l:"S",t:"Spark",sub:"Establish urgency",d:"Why now? Surface the event or deadline that made this a priority today.",listen:"a recent audit, a board deadline, an incident, a new regulation, a leadership change."},
+    {l:"C",t:"Context",sub:"Map the landscape",d:"What people, systems, assets, regions, and constraints are in play?",listen:"regions and countries, hybrid or cloud environments, scale, business units, existing tools."},
+    {l:"O",t:"Operating workflow",sub:"Trace the process",d:"How does the work actually happen today, end to end, and who touches it?",listen:"how findings are triaged, who remediates, hand-offs, what \u2018done\u2019 means today."},
+    {l:"P",t:"Pain and priority",sub:"Rank what hurts",d:"What is difficult, which risk matters most, and what is the impact of leaving it?",listen:"what is truly urgent vs merely present, consequences, what keeps leaders up at night."},
+    {l:"E",t:"Evidence and evaluation",sub:"Define success",d:"What defines success, and what next technical action is appropriate?",listen:"success criteria, a defensible metric, a scoped pilot, an agreed next step."}
+  ];
+  var acc=$("#scopeAcc");
+  SCOPE.forEach(function(it,i){
+    var bid="acc-body-"+i;
+    var item=document.createElement("div"); item.className="acc-item";
+    item.innerHTML='<button class="acc-head" aria-expanded="'+(i===0?"true":"false")+'" aria-controls="'+bid+'">'
+      +'<span class="acc-letter" aria-hidden="true">'+it.l+'</span>'
+      +'<span class="t"><b>'+it.t+'</b><small>'+it.sub+'</small></span>'
+      +'<span class="acc-sign" aria-hidden="true">'+(i===0?"\u2212":"+")+'</span></button>'
+      +'<div class="acc-body" id="'+bid+'"'+(i===0?"":" hidden")+'><p>'+it.d+'</p><div class="listen"><b>What to listen for:</b> '+it.listen+'</div></div>';
+    acc.appendChild(item);
+  });
+  $$(".acc-head",acc).forEach(function(head){
+    head.addEventListener("click",function(){
+      var open=head.getAttribute("aria-expanded")==="true";
+      head.setAttribute("aria-expanded",open?"false":"true");
+      $("#"+head.getAttribute("aria-controls")).hidden=open;
+      head.querySelector(".acc-sign").textContent=open?"+":"\u2212";
+    });
+  });
+
+  /* ---------- Part 3: matching ---------- */
+  var MATCH=[
+    {q:"\u201cWhat prompted you to look at this now, and what deadline are you working toward?\u201d",a:"S"},
+    {q:"\u201cWhich regions, systems, and teams are involved across your environment?\u201d",a:"C"},
+    {q:"\u201cWalk me through how a single finding gets triaged and fixed today.\u201d",a:"O"},
+    {q:"\u201cOf everything on the list, which risk would matter most to your board?\u201d",a:"P"},
+    {q:"\u201cWhat would a successful first pilot need to prove?\u201d",a:"E"}
+  ];
+  var LETTERS=["S","C","O","P","E"];
+  var SCOPE_NAME={S:"Spark",C:"Context",O:"Operating workflow",P:"Pain and priority",E:"Evidence and evaluation"};
+  var matchRows=$("#matchRows");
+  MATCH.forEach(function(m,i){
+    var row=document.createElement("div"); row.className="match-row"; row.dataset.answer=m.a; row.dataset.picked="";
+    var grp='<div class="lettergroup" role="group" aria-label="SCOPE letter for question '+(i+1)+'">';
+    LETTERS.forEach(function(L){ grp+='<button type="button" aria-pressed="false" data-letter="'+L+'">'+L+'</button>'; });
+    grp+='</div>';
+    row.innerHTML='<div>'+m.q+'</div>'+grp+'<div class="row-mark" role="status"></div>';
+    matchRows.appendChild(row);
+  });
+  $$(".match-row .lettergroup button").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      var row=btn.closest(".match-row");
+      $$(".lettergroup button",row).forEach(function(b){b.setAttribute("aria-pressed","false");});
+      btn.setAttribute("aria-pressed","true"); row.dataset.picked=btn.getAttribute("data-letter");
+      row.classList.remove("correct","wrong");
+    });
+  });
+  $("#matchSubmit").addEventListener("click",function(){
+    var answered=0,right=0;
+    $$(".match-row").forEach(function(row){ if(row.dataset.picked) answered++; });
+    if(answered<MATCH.length){ $("#matchNote").textContent="Answer all five before submitting ("+answered+" of "+MATCH.length+" done)."; return; }
+    $("#matchNote").textContent="";
+    $$(".match-row").forEach(function(row){
+      var picked=row.dataset.picked,ans=row.dataset.answer,mk=row.querySelector(".row-mark");
+      row.classList.remove("correct","wrong");
+      if(picked===ans){ right++; row.classList.add("correct"); mk.textContent="Correct \u2014 "+ans+" ("+SCOPE_NAME[ans]+")."; }
+      else{ row.classList.add("wrong"); mk.textContent="This one is really "+ans+" ("+SCOPE_NAME[ans]+")."; }
+    });
+    var fb=$("#matchFb");
+    if(right===MATCH.length){ fb.className="feedback show good"; $("#matchFbTitle").textContent="All five correct"; $("#matchFbBody").textContent="You can hear which SCOPE move a question is making \u2014 that is what keeps discovery balanced instead of drifting into one corner."; }
+    else{ fb.className="feedback show bad"; $("#matchFbTitle").textContent=right+" of 5 correct"; $("#matchFbBody").textContent="The rows are marked with the move each question actually serves. Retry to get all five, or continue."; }
+    showContinue("cw-3");
+  });
+  $("#matchReset").addEventListener("click",function(){
+    $$(".match-row").forEach(function(row){ row.dataset.picked=""; row.classList.remove("correct","wrong"); $$(".lettergroup button",row).forEach(function(b){b.setAttribute("aria-pressed","false");}); });
+    $("#matchNote").textContent=""; $("#matchFb").className="feedback";
+  });
+
+  /* ---------- Part 4: planner ---------- */
+  var PQ=[
+    {v:"spark",good:true,t:"What prompted this review now, and what deadline are you working toward?"},
+    {v:"workflow",good:true,t:"How are findings triaged and remediated across regions today?"},
+    {v:"risk",good:true,t:"How do you currently decide which findings are urgent?"},
+    {v:"constraints",good:true,t:"Which governance or data-residency constraints must any solution respect?"},
+    {v:"success",good:true,t:"What would a successful outcome look like to the board?"},
+    {v:"pitch",good:false,t:"Can I show you our platform\u2019s dashboard first?"},
+    {v:"commercial",good:false,t:"What is your annual security budget for tooling?"}
+  ];
+  var pqList=$("#pqList");
+  PQ.forEach(function(q){ var lab=document.createElement("label"); lab.className="opt"; lab.innerHTML='<input type="checkbox" value="'+q.v+'" data-good="'+q.good+'"><span>'+q.t+'</span>'; pqList.appendChild(lab); });
+  function pqChecked(){ return $$('#pqList input:checked'); }
+  function updatePq(){ var n=pqChecked().length; $("#qCount").textContent="("+n+" of 3 selected)"; var atMax=n>=3; $$('#pqList input').forEach(function(c){ if(!c.checked) c.disabled=atMax; }); }
+  $$('#pqList input').forEach(function(c){ c.addEventListener("change",updatePq); });
+
+  var STK=[
+    {v:"Priya Raman (Global CISO)",rel:true},{v:"Carlos Mendes (Director, Security Operations)",rel:true},
+    {v:"Elena Novak (VP, Global IT Operations)",rel:true},{v:"Marcus Lee (Cloud Security Architect)",rel:true},
+    {v:"Hiro Tanaka (Regional Operations Leader)",rel:true},{v:"Outside legal counsel",rel:false}
+  ];
+  var stkList=$("#stkList");
+  STK.forEach(function(s){ var lab=document.createElement("label"); lab.className="opt"; lab.innerHTML='<input type="checkbox" value="'+s.v+'" data-rel="'+s.rel+'"><span>'+s.v+'</span>'; stkList.appendChild(lab); });
+
+  var ACT=[
+    {v:"a",best:true,t:"Propose a focused discovery workshop with Security Operations and Cloud Architecture to map current triage and prioritization across two regions."},
+    {v:"b",best:false,t:"Deliver a full platform demo to the CISO next week."},
+    {v:"c",best:false,t:"Send enterprise pricing and a draft contract."},
+    {v:"d",best:false,t:"Begin implementation planning for a global rollout."}
+  ];
+  var actList=$("#actList");
+  ACT.forEach(function(a){ var lab=document.createElement("label"); lab.className="opt"; lab.innerHTML='<input type="radio" name="nextAct" value="'+a.v+'" data-best="'+a.best+'"><span>'+a.t+'</span>'; actList.appendChild(lab); });
+
+  $("#genPlan").addEventListener("click",function(){
+    var chosen=pqChecked(); var fb=$("#planFb");
+    if(chosen.length!==3){ fb.className="feedback show bad"; $("#planFbTitle").textContent="Not yet"; $("#planFbBody").textContent="Select exactly three priority discovery questions before generating your plan ("+chosen.length+" selected)."; return; }
+    var probs=[$("#prob1").value,$("#prob2").value,$("#prob3").value].filter(function(x){return x.trim();});
+    var stks=$$('#stkList input:checked'); var act=$('input[name="nextAct"]:checked');
+    var weak=chosen.filter(function(c){return c.getAttribute("data-good")==="false";});
+    var irrel=stks.filter(function(s){return s.getAttribute("data-rel")==="false";});
+    var notes=[],good=true;
+    if(weak.length){ good=false; notes.push("One or more of your questions jumps toward a demo or a commercial detail. In early discovery, trade those for questions that uncover workflow, risk, or success criteria."); }
+    if(irrel.length){ good=false; notes.push("Outside legal counsel rarely belongs in a first technical discovery \u2014 keep the room focused on the people who shape the technical picture."); }
+    if(act && act.getAttribute("data-best")!=="true"){ good=false; notes.push("Your next action moves ahead of your understanding. A scoped discovery workshop earns the right to demo, price, or plan later."); }
+    if(!notes.length){ notes.push("Solid plan. You are testing a hypothesis, prioritizing questions that open up SCOPE, and proposing a next action that fits how little is confirmed so far."); }
+    var body='<p><b>Working hypotheses:</b> '+(probs.length?escapeHtml(probs.join(" \u00b7 ")):"none entered")+'</p>';
+    body+='<p><b>Priority questions:</b></p><ul class="clean">';
+    chosen.forEach(function(c){ body+='<li>'+escapeHtml(c.parentNode.textContent.trim())+'</li>'; });
+    body+='</ul>';
+    body+='<p><b>Stakeholders:</b> '+(stks.length?stks.map(function(s){return escapeHtml(s.value);}).join(", "):"none selected")+'</p>';
+    body+='<p><b>Next technical action:</b> '+(act?escapeHtml(act.parentNode.textContent.trim()):"none selected")+'</p>';
+    body+='<p style="margin-top:8px">'+notes.map(escapeHtml).join("<br>")+'</p>';
+    fb.className="feedback show "+(good?"good":"info"); $("#planFbTitle").textContent="Your discovery plan"; $("#planFbBody").innerHTML=body;
+    showContinue("cw-4");
+  });
+
+  /* ---------- Part 5: simulation ---------- */
+  var INTENTS={
+    trigger:["why now","prompt","trigger","driver","audit","board","deadline","timing","urgen","reason","led to","catalyst","recently","what happened","four month","bring this"],
+    scope:["how many","which region","regions","countries","country","global","scope","environment","hybrid","cloud","on-prem","on prem","systems","tools","estate","footprint","scale","business unit","how large","how big","landscape","where are","how much of"],
+    workflow:["workflow","process","today","currently","how do you","how are","how does","triage","remediat","assign","handle","handled","steps","who does","operate","day to day","day-to-day","routine","manage the finding","manage findings","get fixed"],
+    risk:["risk","priorit","urgent","critical","impact","severity","most important","matter most","matters most","consequence","worst","exposure","keeps you","biggest","serious"],
+    constraints:["governance","complian","regulat","policy","data residency","residency","integrat","constraint","requirement","standard","access control","agent on","legal requirement","privacy","control framework","approval"],
+    success:["success","define success","metric","measure","outcome","next step","proof of value","pov","pilot","criteria","good look like","looks like success","evaluat","goal","objective","defensible","prove","win looks"],
+    stakeholder:["who owns","who is responsible","stakeholder","which team","teams","owner","role","persona","decision maker","reports","involved","who handles","responsib","who else","people involved"]
+  };
+  var PITCH=["our product","our solution","our platform","our tool","our software","our dashboard","we offer","we provide","we can provide","let me show you our","demo of our","recommend our","you should use","buy ","purchase","license","deploy our","i suggest our","our capability","our feature","sign a","our roadmap"];
+  var FACTS={
+    trigger:{who:"Priya Raman, Global CISO",line:"A recent internal audit flagged inconsistent asset ownership and uneven remediation tracking. I owe the board a defensible risk update in four months, so this became urgent now."},
+    scope:{who:"Elena Novak, VP Global IT Operations",line:"We run a hybrid estate \u2014 data centers in six regions plus three public-cloud providers, across 24 countries and about 45,000 employees. Tooling grew regionally, so coverage is uneven."},
+    workflow:{who:"Carlos Mendes, Director, Security Operations",line:"Findings land in several regional queues. Analysts triage them by hand, then hand remediation to local IT teams \u2014 and there is no shared definition of \u2018done.\u2019"},
+    risk:{who:"Priya Raman, Global CISO",line:"The real problem is not a shortage of findings. It is that we cannot consistently say which findings are genuinely urgent. Everything shows up red."},
+    constraints:{who:"Marcus Lee, Cloud Security Architect",line:"Anything we adopt has to respect regional data-residency rules, integrate with our existing ticketing, and avoid installing agents on certain regulated systems."},
+    success:{who:"Priya Raman, Global CISO",line:"Success is one consistent, risk-based way to prioritize that I can defend to the board. A scoped pilot in two regions would be a credible first step."},
+    stakeholder:{who:"Hiro Tanaka, Regional Operations Leader",line:"If this becomes a central mandate that ignores local constraints, regional teams will see it as extra work. Involve us early and it will land far better."}
+  };
+  var SCOPE_MAP={trigger:"S",scope:"C",stakeholder:"C",workflow:"O",risk:"P",success:"E"};
+  var INTENT_PHRASE={trigger:"why this became urgent",scope:"the environment and scale",workflow:"how work happens today",risk:"how urgency is decided",constraints:"technical and governance constraints",success:"what success looks like",stakeholder:"who owns the work"};
+
+  var sim;
+  function resetSim(){ sim={turn:1,covered:{},revealed:{},pitchCount:0,askedReal:false,scope:{S:false,C:false,O:false,P:false,E:false},done:false}; }
+  function detect(text){
+    var t=" "+text.toLowerCase().replace(/[\u2019']/g,"'")+" ",hits={};
+    for(var k in INTENTS){ for(var i=0;i<INTENTS[k].length;i++){ if(t.indexOf(INTENTS[k][i])>-1){ hits[k]=true; break; } } }
+    var pitch=false; for(var p=0;p<PITCH.length;p++){ if(t.indexOf(PITCH[p])>-1){ pitch=true; break; } }
+    return {hits:hits,pitch:pitch};
+  }
+  var SN_ROWS=[{L:"S",t:"Spark",cap:"Why now?"},{L:"C",t:"Context",cap:"People, systems, regions"},{L:"O",t:"Operating workflow",cap:"How work happens today"},{L:"P",t:"Pain & priority",cap:"What matters most"},{L:"E",t:"Evidence & evaluation",cap:"What defines success"}];
+  function renderScopeNotes(){
+    var box=$("#scopeNotes"); box.innerHTML="";
+    SN_ROWS.forEach(function(r){ var done=sim.scope[r.L]; var d=document.createElement("div"); d.className="snrow"+(done?" done":""); d.innerHTML='<span class="ltr" aria-hidden="true">'+r.L+'</span><span><span class="ttl">'+r.t+'</span><br><span class="cap">'+(done?"Captured":r.cap)+'</span></span>'; box.appendChild(d); });
+  }
+  function addDlg(kind,speaker,text){ var w=$("#dialog"); var d=document.createElement("div"); d.className="dlg "+kind; d.innerHTML='<div class="spk">'+escapeHtml(speaker)+'</div>'+escapeHtml(text); w.appendChild(d); w.scrollTop=w.scrollHeight; }
+  function seedOpening(){ $("#dialog").innerHTML=""; addDlg("customer","Priya Raman, Global CISO","We need better visibility into security risks across the company. We have too many tools and too many findings, but no consistent way to determine what needs immediate action."); }
+  function updateTurnMeta(){ $("#turnMeta").textContent="(Turn "+Math.min(sim.turn,6)+" of 6)"; }
+
+  function handleAsk(){
+    if(sim.done) return;
+    var input=$("#simInput"),text=input.value.trim(),hint=$("#simHint");
+    if(!text){ hint.setAttribute("data-tone","muted"); hint.textContent="Type a question to ask the room."; return; }
+    var d=detect(text);
+    if(d.pitch){
+      sim.pitchCount++;
+      addDlg("learner","You, Sales Engineer",text);
+      addDlg("coach","Coach\u2019s note","You\u2019re moving to a solution before the problem is understood, and that costs credibility here. Step back \u2014 ask what you don\u2019t yet know about how Apex triages and prioritizes findings today. This turn was not used, so try a discovery question.");
+      input.value=""; input.focus(); return;
+    }
+    addDlg("learner","You, Sales Engineer",text);
+    var newFacts=[];
+    for(var k in d.hits){ if(d.hits[k]){ sim.covered[k]=true; var L=SCOPE_MAP[k]; if(L) sim.scope[L]=true; if(FACTS[k]&&!sim.revealed[k]){ sim.revealed[k]=true; newFacts.push(FACTS[k]); } } }
+    if(Object.keys(d.hits).length===0){ addDlg("customer","Carlos Mendes, Director, Security Operations","I want to help, but that\u2019s broad. Can you make it more specific \u2014 the timing, the workflow, the risk, or what success would look like?"); }
+    else if(newFacts.length===0){ addDlg("customer","Elena Novak, VP Global IT Operations","We\u2019ve touched on that already. It may be worth opening a different part of the picture \u2014 check the Coach\u2019s Notes for gaps."); }
+    else { newFacts.forEach(function(f){ addDlg("customer",f.who,f.line); }); }
+    sim.askedReal=true; renderScopeNotes();
+    if(sim.turn===2){ hint.setAttribute("data-tone","muted"); hint.textContent="Hint: consider what you haven\u2019t uncovered yet \u2014 who owns the work today, and why has this become urgent now?"; }
+    if(sim.turn===4){ hint.setAttribute("data-tone","muted"); hint.textContent="Hint: have you pinned down what \u2018success\u2019 means to Priya, and any governance or data-residency constraints Marcus would raise?"; }
+    sim.turn++; input.value=""; updateTurnMeta();
+    if(sim.turn>6){ finishSim(); } else { input.focus(); }
+  }
+  function finishSim(){
+    sim.done=true; $("#simInput").disabled=true; $("#askBtn").disabled=true;
+    var hint=$("#simHint"); hint.setAttribute("data-tone","green"); hint.textContent="That\u2019s six turns. Choose \u2018See your results\u2019 below.";
+    showContinue("cw-5");
+  }
+  $("#askBtn").addEventListener("click",handleAsk);
+  $("#simInput").addEventListener("keydown",function(e){ if(e.key==="Enter"){ e.preventDefault(); handleAsk(); } });
+  function startMeeting(){ resetSim(); seedOpening(); renderScopeNotes(); updateTurnMeta(); $("#simInput").disabled=false; $("#simInput").value=""; $("#askBtn").disabled=false; $("#simHint").textContent=""; }
+
+  /* ---------- Part 6: scoring ---------- */
+  var CATS=[
+    {key:"scope",label:"Scope management",dev:"Map the landscape early \u2014 which regions, systems, and business units are in play.",q:"Which regions, systems, and teams are involved across your environment?"},
+    {key:"stakeholder",label:"Stakeholder awareness",dev:"Ask who owns each part of the workflow; the affected teams shape whether a solution lands.",q:"Who owns triage and remediation in each region, and who is affected by changes?"},
+    {key:"workflow",label:"Workflow discovery",dev:"Get the current process end to end before proposing a new one.",q:"Walk me through how one finding moves from detection to closed today."},
+    {key:"technical",label:"Technical credibility",dev:"Draw out the technical and governance constraints a solution must respect.",q:"What governance, integration, or data-residency constraints must any solution respect?"},
+    {key:"risk",label:"Risk prioritization",dev:"Distinguish urgent from merely present \u2014 ask how they decide what is truly critical.",q:"Of everything flagged, how do you decide what is genuinely urgent right now?"},
+    {key:"restraint",label:"Solution restraint",dev:"Resist proposing a product before the problem is clear; discovery first, demo later.",q:"Before I suggest anything \u2014 what would a good outcome need to accomplish for you?"},
+    {key:"nextStep",label:"Next-step alignment",dev:"Close discovery on an agreed next step and success criteria.",q:"What would a successful two-region pilot need to prove to your board?"}
+  ];
+  var lastResult=null;
+  function computeScores(){
+    var c=(sim&&sim.covered)||{};
+    var s={ scope:c.scope?4:(c.trigger?2:0), stakeholder:c.stakeholder?4:0, workflow:c.workflow?4:0, technical:c.constraints?4:0, risk:c.risk?4:0, restraint:(sim&&sim.askedReal)?Math.max(0,4-2*sim.pitchCount):0, nextStep:c.success?4:0 };
+    var total=0; for(var k in s) total+=s[k];
+    var band= total>=22?{c:"ready",t:"Field-Ready Foundation"} : total>=15?{c:"dev",t:"Developing"} : {c:"needs",t:"Needs More Practice"};
+    return {scores:s,total:total,band:band};
+  }
+  function renderResults(){
+    lastResult=computeScores(); var s=lastResult.scores;
+    $("#scoreNum").innerHTML=lastResult.total+'<small>/28</small>';
+    var band=$("#bandTag"); band.className="band "+lastResult.band.c; band.textContent=lastResult.band.t;
+    var body=$("#scoreBody"); body.innerHTML="";
+    CATS.forEach(function(cat){ var v=s[cat.key]; var tr=document.createElement("tr"); tr.innerHTML='<td>'+cat.label+'</td><td><div class="sbar"><span style="width:'+(v/4*100)+'%"></span></div></td><td class="sval">'+v+'/4</td>'; body.appendChild(tr); });
+    var covered=[],missed=[];
+    ["trigger","scope","workflow","risk","constraints","success","stakeholder"].forEach(function(k){ if(sim&&sim.covered[k]) covered.push(INTENT_PHRASE[k]); else missed.push(INTENT_PHRASE[k]); });
+    var ranked=CATS.map(function(cat){return {cat:cat,v:s[cat.key]};}).sort(function(a,b){return a.v-b.v;});
+    var lowest=ranked[0]; lastResult.lowest=lowest.cat;
+    $("#evidence").innerHTML='<p><span class="lead2">You explored:</span> '+(covered.length?escapeHtml(covered.join(", ")):"little of the picture in six turns")+'.</p>'
+      +'<p><span class="lead2">You did not yet ask about:</span> '+(missed.length?escapeHtml(missed.join(", ")):"nothing major \u2014 strong coverage")+'.</p>'
+      +'<p><span class="lead2">For your next conversation, try:</span> '+escapeHtml(lowest.cat.dev)+'</p>';
+    $("#retryPrompt").textContent="Practice this: \u201c"+lowest.cat.q+"\u201d";
+    $("#copyNote").textContent="";
+  }
+
+  $("#retrySubmit").addEventListener("click",function(){
+    var note=$("#retryNote"),val=$("#retryInput").value.trim();
+    if(!val){ note.setAttribute("data-tone","red"); note.textContent="Write your version of the question first."; return; }
+    note.setAttribute("data-tone","green"); note.textContent="Logged. Notice how a single, specific question opens the exact area you had missed \u2014 that is the habit to carry into the real meeting.";
+  });
+
+  $("#copyBtn").addEventListener("click",function(){
+    if(!lastResult) return;
+    var lines=["Global Enterprise Discovery \u2014 Scorecard","Total: "+lastResult.total+"/28 ("+lastResult.band.t+")",""];
+    CATS.forEach(function(cat){ lines.push(cat.label+": "+lastResult.scores[cat.key]+"/4"); });
+    var text=lines.join("\n");
+    var done=function(){ $("#copyNote").setAttribute("data-tone","green"); $("#copyNote").textContent="Copied to clipboard."; };
+    function fallback(){ var ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.focus(); ta.select(); try{ document.execCommand("copy"); done(); }catch(e){ $("#copyNote").setAttribute("data-tone","red"); $("#copyNote").textContent="Copy not supported \u2014 select and copy manually."; } document.body.removeChild(ta); }
+    try{ if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done,fallback); } else fallback(); }catch(e){ fallback(); }
+  });
+
+  /* reveal results computes score when Part 6 first shown */
+  var _revealPart=revealPart;
+  revealPart=function(n){ _revealPart(n); if(n===6) renderResults(); };
+
+  /* ---------- restart ---------- */
+  $("#restartCourse").addEventListener("click",function(){
+    for(var i=2;i<=TOTAL;i++){ $("#part-"+i).hidden=true; }
+    revealed=1; updateMenu();
+    startMeeting();
+    $$('input[type=radio],input[type=checkbox]').forEach(function(i){ i.checked=false; i.disabled=false; });
+    ["prob1","prob2","prob3","retryInput"].forEach(function(id){ var el=$("#"+id); if(el) el.value=""; });
+    updatePq();
+    ["roleFb","matchFb","planFb"].forEach(function(id){ $("#"+id).className="feedback"; });
+    $("#matchNote").textContent="";
+    $$(".match-row").forEach(function(row){ row.dataset.picked=""; row.classList.remove("correct","wrong"); $$(".lettergroup button",row).forEach(function(b){b.setAttribute("aria-pressed","false");}); });
+    ["cw-2","cw-3","cw-4","cw-5"].forEach(function(id){ $("#"+id).hidden=true; });
+    lastResult=null;
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+
+  /* ---------- init ---------- */
+  startMeeting(); updatePq(); onScroll();
+})();
+</script>
+</body>
+</html>
