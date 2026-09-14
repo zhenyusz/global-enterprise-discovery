@@ -1,1 +1,909 @@
-<!-- Module 2 course file -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A 15-minute, scenario-based revenue enablement module for Sales Engineers. This fictional learning experience uses PosturePilot to prepare a customer security validation conversation.">
+  <title>Security Assessment Validation Lab | Portfolio</title>
+  <style>
+    :root {
+      --ink: #152338;
+      --muted: #5f6f82;
+      --navy: #102a43;
+      --navy-2: #173f63;
+      --teal: #0c8a87;
+      --teal-dark: #086967;
+      --teal-soft: #e7f7f5;
+      --gold: #e7ae43;
+      --gold-soft: #fff6df;
+      --surface: #ffffff;
+      --surface-alt: #f4f7fa;
+      --line: #d8e1ea;
+      --success: #1d7a4f;
+      --radius: 16px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--ink); background: var(--surface-alt); line-height: 1.6; }
+    a { color: inherit; }
+    button, textarea { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 3px solid #f2b84b; outline-offset: 3px; }
+
+    .site-header { background: var(--navy); color: #fff; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 14px rgba(0,0,0,.18); }
+    .header-inner { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font-weight: 800; letter-spacing: .01em; text-decoration: none; }
+    .brand span { color: #87e2dd; }
+    .header-note { font-size: .87rem; color: #c9d8e6; }
+
+    main { overflow: hidden; }
+    .hero { background: radial-gradient(circle at 84% 18%, rgba(30, 180, 172, .34), transparent 32%), linear-gradient(135deg, #102a43 0%, #173f63 55%, #0b6f73 100%); color: #fff; padding: 82px 0 70px; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    .hero-grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: 48px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,.34); border-radius: 99px; padding: 6px 12px; font-size: .77rem; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; color: #d9f7f5; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: clamp(2.2rem, 5vw, 4.35rem); max-width: 860px; line-height: 1.05; letter-spacing: -.045em; margin: 18px 0; }
+    .hero .lede { font-size: clamp(1.05rem, 2vw, 1.25rem); max-width: 720px; color: #d7e8f5; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button { display: inline-flex; justify-content: center; align-items: center; min-height: 46px; border-radius: 10px; padding: 10px 18px; border: 1px solid transparent; font-weight: 800; text-decoration: none; transition: transform .18s ease, background .18s ease, border .18s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: #fff; color: var(--navy); }
+    .button-secondary { background: transparent; color: #fff; border-color: rgba(255,255,255,.55); }
+    .hero-card { background: rgba(255,255,255,.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius); padding: 24px; }
+    .hero-card h2 { font-size: 1.05rem; margin-bottom: 12px; }
+    .hero-card dl { margin: 0; display: grid; gap: 12px; }
+    .hero-card div { display: grid; grid-template-columns: 105px 1fr; gap: 12px; }
+    .hero-card dt { color: #b8d9e8; font-size: .85rem; font-weight: 700; }
+    .hero-card dd { margin: 0; font-size: .92rem; }
+
+    section { padding: 66px 0; }
+    section:nth-of-type(even) { background: var(--surface); }
+    .section-heading { max-width: 800px; margin-bottom: 30px; }
+    .section-heading h2 { color: var(--navy); font-size: clamp(1.75rem, 3vw, 2.55rem); line-height: 1.15; letter-spacing: -.03em; margin-bottom: 10px; }
+    .section-heading p { color: var(--muted); font-size: 1.05rem; }
+    .callout { border-left: 5px solid var(--teal); background: var(--teal-soft); padding: 18px 20px; border-radius: 0 12px 12px 0; margin: 24px 0; }
+    .callout strong { color: var(--teal-dark); }
+    .small-note { color: var(--muted); font-size: .9rem; }
+    .visual-learning {
+  background: linear-gradient(135deg, #f8fcfc, #f0f7fb);
+}
+
+.visual-learning-flow {
+  display: grid;
+  gap: 44px;
+  margin-top: 32px;
+}
+
+.visual-learning-step {
+  width: 100%;
+}
+
+.visual-copy {
+  max-width: 840px;
+  margin-bottom: 18px;
+}
+
+.visual-copy h3 {
+  color: var(--navy);
+  font-size: 1.5rem;
+  margin: 10px 0 8px;
+}
+
+.visual-copy p {
+  color: var(--muted);
+}
+
+.visual-copy ul {
+  padding-left: 22px;
+  margin-bottom: 0;
+}
+
+.visual-copy li + li {
+  margin-top: 8px;
+}
+
+.visual-learning-step .screenshot-frame {
+  width: 100%;
+  margin: 0;
+}
+
+.visual-learning-step .screenshot-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+}
+
+    .overview-grid.full-width {
+  grid-template-columns: 1fr;
+}
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: 0 8px 22px rgba(21,35,56,.05); }
+    .card h3 { color: var(--navy); font-size: 1.2rem; }
+    .card ul { padding-left: 20px; margin-bottom: 0; }
+    .card li + li { margin-top: 8px; }
+    .objective-list { list-style: none; padding: 0; counter-reset: objective; }
+    .objective-list li { counter-increment: objective; display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; }
+    .objective-list li + li { margin-top: 14px; }
+    .objective-list li::before { content: counter(objective); display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--teal-soft); color: var(--teal-dark); font-weight: 800; font-size: .84rem; }
+
+    .fact-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .fact-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+    .fact-card strong { display: block; color: var(--teal-dark); font-size: .88rem; margin-bottom: 6px; }
+    .fact-card p { margin: 0; font-size: .92rem; color: var(--muted); }
+    .fact-example {
+  margin-top: 18px !important;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  color: var(--navy) !important;
+  font-style: italic;
+}
+
+    .workflow-visual { margin: 0 0 28px; padding: 16px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: 0 8px 22px rgba(21,35,56,.05); }
+    .workflow-visual img { display: block; width: 100%; height: auto; border-radius: 10px; }
+    .workflow-visual figcaption { margin-top: 12px; text-align: center; color: var(--muted); font-size: .92rem; }
+    .flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+    .flow-step { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 14px; min-height: 154px; }
+    .flow-step .number { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--navy); color: #fff; font-size: .8rem; font-weight: 800; margin-bottom: 12px; }
+    .flow-step h3 { margin-bottom: 7px; font-size: 1rem; color: var(--navy); line-height: 1.15; }
+    .flow-step p { margin: 0; font-size: .85rem; color: var(--muted); }
+
+    .scenario {
+  background: linear-gradient(135deg, #ecfbfa, #f7fcff);
+}
+
+.approval-heading {
+margin-top: 32px !important;
+padding-top: 24px;
+border-top: 1px solid var(--line);
+}
+
+.scenario-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: stretch;
+}
+
+.scenario-grid > .card,
+.scenario-grid > .finding {
+  height: 100%;
+}
+
+.scenario-grid .card h3 + ul {
+  margin-bottom: 28px;
+}
+
+.scenario-grid .card h3[style] {
+  margin-top: 32px !important;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.finding {
+  background: #ffffff;
+  border: 1px solid #bfe2df;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(21, 35, 56, 0.05);
+}
+
+.finding-head {
+  background: var(--navy);
+  color: #ffffff;
+  padding: 24px;
+}
+
+.finding-head h3 {
+  margin-bottom: 8px;
+}
+
+.finding-head p {
+  margin-bottom: 0;
+  color: #d4e4f0;
+}
+
+.finding-body {
+  padding: 22px 24px;
+}
+    .finding-head p { margin: 6px 0 0; color: #d4e4f0; }
+    .finding-body { padding: 20px; }
+    .finding-row { display: grid; grid-template-columns: 145px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .finding-row:last-child { border-bottom: none; }
+    .finding-row strong { color: var(--muted); font-size: .86rem; }
+    .badge-critical { display: inline-block; border-radius: 99px; padding: 3px 9px; background: #fde8e8; color: #9e2424; font-size: .78rem; font-weight: 800; }
+
+    .workspace-tour { background: #fff; }
+    .menu-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+    .menu-list li { border: 1px solid var(--line); border-radius: 11px; padding: 13px 14px; display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: start; }
+    .menu-icon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--teal-soft); color: var(--teal-dark); font-size: .8rem; font-weight: 800; }
+    .menu-list strong { display: block; color: var(--navy); }
+    .menu-list span:last-child { color: var(--muted); font-size: .92rem; }
+    .screenshot-frame { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; box-shadow: 0 14px 36px rgba(17,42,67,.10); }
+    .screenshot-frame img { width: 100%; height: auto; display: block; border-radius: 10px; background: #e8eef3; }
+    .screenshot-frame figcaption { margin: 12px 4px 2px; color: var(--muted); font-size: .9rem; }
+    .workflow-map { width: 100%; border-collapse: collapse; margin-top: 26px; }
+    .workflow-map th, .workflow-map td { padding: 12px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .workflow-map th { background: #eff8f7; color: var(--navy); }
+
+    .visual-learning { background: linear-gradient(135deg, #f8fcfc, #f0f7fb); }
+    .visual-copy h3 { color: var(--navy); font-size: 1.45rem; margin-bottom: 8px; }
+    .visual-copy ul { padding-left: 22px; }
+    .visual-copy li + li { margin-top: 8px; }
+    .visual-label { display: inline-block; border-radius: 99px; padding: 4px 10px; background: var(--teal-soft); color: var(--teal-dark); font-size: .78rem; font-weight: 800; }
+
+    .lab-intro { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 24px; background: var(--navy); color: #fff; border-radius: var(--radius); }
+    .lab-intro h2 { margin-bottom: 8px; }
+    .lab-intro p { color: #d7e8f5; margin-bottom: 0; max-width: 750px; }
+    .progress-wrap { margin: 30px 0 22px; }
+    .progress-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: .9rem; color: var(--muted); margin-bottom: 8px; }
+    .progress-bar { height: 11px; border-radius: 99px; background: #dfe8ee; overflow: hidden; }
+    .progress-fill { height: 100%; width: 0%; border-radius: inherit; background: linear-gradient(90deg, var(--teal), #52c9c0); transition: width .25s ease; }
+    .task-list { display: grid; gap: 14px; }
+    .task { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); overflow: hidden; }
+    .task[open] { border-color: #8ccfca; box-shadow: 0 8px 22px rgba(12,138,135,.08); }
+    summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 20px; cursor: pointer; font-weight: 800; color: var(--navy); }
+    summary::-webkit-details-marker { display: none; }
+    .summary-left { display: flex; align-items: center; gap: 12px; }
+    .task-number { display: grid; place-items: center; width: 30px; height: 30px; background: var(--teal-soft); color: var(--teal-dark); border-radius: 50%; font-size: .82rem; }
+    .task.done .task-number { background: var(--success); color: #fff; }
+    .chevron { color: var(--teal-dark); transition: transform .2s ease; }
+    details[open] .chevron { transform: rotate(180deg); }
+    .task-content { padding: 0 20px 22px; border-top: 1px solid var(--line); }
+    .workspace-label { display: inline-block; margin-top: 18px; margin-bottom: 10px; color: var(--teal-dark); background: var(--teal-soft); border-radius: 99px; padding: 4px 10px; font-size: .78rem; font-weight: 800; }
+    .task-content h3 { color: var(--navy); margin: 12px 0 8px; }
+    .task-content ul, .task-content ol { padding-left: 22px; }
+    .task-content li + li { margin-top: 6px; }
+    .task-callout { background: var(--gold-soft); border-left: 4px solid var(--gold); border-radius: 0 9px 9px 0; padding: 12px 14px; margin: 16px 0; font-size: .94rem; }
+    .complete-task { border: 1px solid var(--teal); color: var(--teal-dark); background: #fff; border-radius: 9px; padding: 9px 13px; font-weight: 800; margin-top: 12px; }
+    .complete-task:hover { background: var(--teal-soft); }
+    .complete-task.completed { background: var(--success); border-color: var(--success); color: #fff; }
+    .mini-table { width: 100%; border-collapse: collapse; margin: 14px 0 4px; font-size: .93rem; }
+    .mini-table th, .mini-table td { text-align: left; vertical-align: top; padding: 10px; border: 1px solid var(--line); }
+    .mini-table th { width: 28%; background: #f3f8fa; color: var(--navy); }
+
+    .completion { display: none; margin-top: 28px; background: #eaf8f1; border: 1px solid #b9dfca; border-radius: var(--radius); padding: 24px; }
+    .completion.show { display: block; }
+    .completion h2 { color: var(--success); }
+    .reflection { margin-top: 18px; }
+    label { display: block; color: var(--navy); font-weight: 800; margin-bottom: 8px; }
+    textarea { width: 100%; min-height: 125px; resize: vertical; border: 1px solid #aabac9; border-radius: 10px; padding: 12px; color: var(--ink); background: #fff; }
+    .save-row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+    .save-button { border: 0; border-radius: 9px; background: var(--navy); color: #fff; padding: 10px 14px; font-weight: 800; }
+    .save-status { color: var(--success); font-size: .92rem; font-weight: 700; }
+
+    .portfolio { background: var(--navy); color: #fff; }
+    .portfolio .section-heading h2 { color: #fff; }
+    .portfolio .section-heading p { color: #d3e4f2; }
+    .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .portfolio .card { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); box-shadow: none; }
+    .portfolio .card h3 { color: #fff; }
+    .portfolio .card p, .portfolio .card li { color: #d7e8f5; }
+
+    footer { background: #081a2a; color: #b7c8d8; padding: 24px 0; font-size: .88rem; }
+    .footer-inner { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; display: flex; gap: 16px; justify-content: space-between; align-items: center; }
+    .back-top { color: #fff; font-weight: 800; text-decoration: none; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .overview-grid, .scenario-grid, .workspace-grid, .visual-learning-grid, .portfolio-grid { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: repeat(3, 1fr); }
+      .fact-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero { padding-top: 60px; }
+      .visual-learning-grid.reverse .visual-copy, .visual-learning-grid.reverse .screenshot-frame { order: initial; }
+    }
+    @media (max-width: 620px) {
+      .header-note { display: none; }
+      .wrap, .header-inner, .footer-inner { width: min(var(--max), calc(100% - 28px)); }
+      section { padding: 48px 0; }
+      .flow { grid-template-columns: 1fr 1fr; }
+      .fact-grid { grid-template-columns: 1fr; }
+      .finding-row { grid-template-columns: 1fr; gap: 4px; }
+      .lab-intro { display: block; }
+      .mini-table, .mini-table tbody, .mini-table tr, .mini-table th, .mini-table td, .workflow-map, .workflow-map tbody, .workflow-map tr, .workflow-map th, .workflow-map td { display: block; width: 100%; }
+      .mini-table th, .workflow-map th { border-bottom: 0; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top">Posture<span>Pilot</span> Learning Lab</a>
+      <span class="header-note">Module 2 • 15-minute Revenue Enablement Experience</span>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Module 2 • Scenario-Based Practice</span>
+          <h1>From Discovery to a Clear Security Plan</h1>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#start">Start the 15-minute module</a>
+            <a class="button button-secondary" href="#scenario">View the practice story</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Course details">
+          <h2>Course details</h2>
+          <dl>
+            <div><dt>Audience</dt><dd>Sales Engineers and customer-facing technical teams</dd></div>
+            <div><dt>Time</dt><dd>15 minutes</dd></div>
+            <div><dt>Practice</dt><dd>Meridian Financial Validation Lab</dd></div>
+            <div><dt>Output</dt><dd>A short Customer Validation Plan</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section id="start">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow" style="color:var(--teal-dark);border-color:#9bd7d2;">Overview</span>
+          <h2>What this module is about</h2>
+          <p>You are a Sales engineer. After a discovery call, you are reviewing the security report with technical details. Learn what the report shows, what you still need to ask, and how to plan a safe next step. This module helps you turn one finding into a clear, customer-centered conversation plan.</p>
+        </div>
+        <div class="overview-grid full-width">
+  <article class="card">
+    <h3>By the end, you will be able to</h3>
+
+    <ol class="objective-list">
+      <li>Explain what a security finding tells you and what it does not tell you.</li>
+      <li>Identify the people, questions, and work limits you need to know before suggesting a next step.</li>
+      <li>Create a short plan with a fact, a customer question, a test activity, and a clear sign of success.</li>
+      <li>Spot AI-written statements that are not supported by the facts or make promises too soon.</li>
+      <li>Choose simple success checks that the customer can see and confirm.</li>
+    </ol>
+  </article>
+</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow" style="color:var(--teal-dark);border-color:#9bd7d2;">Key ideas</span>
+          <h2>Use the facts carefully</h2>
+          <p>A security check can find a setting that may need attention. It gives you a place to start. It does not tell you everything you need to know before making a change.</p>
+        </div>
+    
+
+        <div class="fact-grid">
+  <article class="fact-card">
+    <strong>Fact from the report</strong>
+    <p>Something the security check clearly shows.</p>
+
+    <p class="fact-example">
+      <strong>Example:</strong> “The access rule allows a broad group of networks.”
+    </p>
+  </article>
+
+  <article class="fact-card">
+    <strong>Question for the customer</strong>
+    <p>Something you still need to learn.</p>
+
+    <p class="fact-example">
+      <strong>Example:</strong> “Which people and networks need access?”
+    </p>
+  </article>
+
+  <article class="fact-card">
+    <strong>Possible concern</strong>
+    <p>Something that may be true, but needs more information.</p>
+
+    <p class="fact-example">
+      <strong>Example:</strong> “This may make unwanted admin access easier.”
+    </p>
+  </article>
+
+  <article class="fact-card">
+    <strong>Customer decision</strong>
+    <p>A choice the customer must approve.</p>
+
+    <p class="fact-example">
+      <strong>Example:</strong> “Limit access during an approved maintenance window.”
+    </p>
+  </article>
+
+  <article class="fact-card">
+    <strong>Unsupported statement</strong>
+    <p>Something the report does not prove.</p>
+
+    <p class="fact-example">
+      <strong>Example:</strong> “The customer has been hacked.”
+    </p>
+  </article>
+</div>
+
+
+    <section>
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow" style="color:var(--teal-dark);border-color:#9bd7d2;">Workflow</span>
+          <h2>Plan the security check conversation</h2>
+          <p>Use these six steps to move from a security finding to a helpful customer meeting. Your goal is to understand the facts, learn what is missing, and agree on how success will be checked.</p>
+        </div>
+        <figure class="workflow-visual">
+          <img src="Module-workflow-visual-selection.png" alt="Security Assessment Validation Workflow: Review Assessment, Identify Needs, Draft Plan, Verify Content, Conduct Workshop, and Define Success.">
+          <figcaption>Use this security assessment validation workflow to prepare for a customer security validation conversation.</figcaption>
+        </figure>
+        
+        <div class="callout"><strong>Planning question:</strong> What does the report clearly show, and what does the customer still need to confirm before you suggest a technical change?</div>
+      </div>
+    </section>
+
+ 
+      <section class="visual-learning" id="workspace-examples">
+  <div class="wrap">
+
+    <div class="section-heading">
+      <span
+        class="eyebrow"
+        style="color:var(--teal-dark);border-color:#9bd7d2;"
+      >
+        Where to look
+      </span>
+
+      <h2>See each key step before you begin</h2>
+
+      <p>
+        These examples show where each important action happens in
+        PosturePilot. Each screenshot is paired with the task you will
+        complete in the Meridian Financial practice lab.
+      </p>
+    </div>
+
+    <div class="visual-learning-flow">
+
+
+      <article class="visual-learning-step">
+        <div class="visual-copy">
+ <span class="visual-label">Task 1: Review Assessment</span>
+
+    <h3>Start with the security overview</h3>
+
+    <p>
+      Use the Security Posture Overview to see the big picture. Look for
+      higher-risk findings, systems that may need attention, and items that
+      do not have a clear owner.
+    </p>
+
+    <ul>
+      <li>Review finding levels and higher-risk systems.</li>
+      <li>Look for a Critical or High finding that needs discussion.</li>
+      <li>Check whether the system has a clear owner.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Remember:</strong> A Critical finding is a good reason to start
+      a customer conversation. It does not prove business harm or approve a
+      change.
+    </div>
+  </div>
+
+  <figure class="screenshot-frame">
+    <img
+      src="assets/02-posturepilot-workspace-overview.png"
+      alt="PosturePilot Security Posture Overview showing severity levels, higher-risk systems, and broad remote-management access on ops-jump-01 marked Critical."
+    >
+
+    <figcaption>
+      Start here. Use the overview to find a security finding that needs a
+      customer conversation.
+    </figcaption>
+  </figure>
+</article>
+
+      <article class="visual-learning-step">
+  <div class="visual-copy">
+    <span class="visual-label">Task 2: Identify Needs</span>
+
+    <h3>Open the finding and list what you still need to ask</h3>
+
+    <p>
+      Open the finding to see what the report clearly shows. Then separate
+      that fact from the questions Meridian Financial still needs to answer.
+    </p>
+
+    <ul>
+      <li>Start with the fact from the report.</li>
+      <li>Identify who owns the system and who can approve a change.</li>
+      <li>Ask which admins, networks, vendors, and work steps need access.</li>
+      <li>Identify testing, timing, and backup-plan needs.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Fact from the report:</strong> The admin-access rule allows a
+      broad range of networks.
+      <br><br>
+      <strong>Still unknown:</strong> Who needs access, who owns the system,
+      what work depends on it, and whether it is safe to make a change now.
+    </div>
+  </div>
+
+  <figure class="screenshot-frame">
+    <img
+      src="assets/03-assessment-finding-detail.png"
+      alt="PosturePilot Assessment Findings screen showing broad remote-management access on ops-jump-01, marked Critical, with the confirmed evidence and customer questions."
+    >
+
+    <figcaption>
+      The report gives you a fact to discuss. The customer provides the
+      missing context needed before a recommendation is made.
+    </figcaption>
+  </figure>
+</article>
+
+      <article class="visual-learning-step">
+        <div class="visual-copy">
+          <span class="visual-label">Task 3</span>
+
+          <h3>Build the customer plan</h3>
+
+          <p>
+            The Validation Plan is the main work product in this module. It
+            turns a technical fact into a clear customer conversation.
+          </p>
+
+          <ul>
+            <li>Keep the report fact separate from guesses.</li>
+            <li>Add the question the customer needs to answer.</li>
+            <li>Name the people who can answer it.</li>
+            <li>Plan a small, approved test and a clear success check.</li>
+          </ul>
+
+          <div class="callout">
+            <strong>Goal:</strong> Approved admins can still get in, while
+            unapproved networks cannot, within the agreed scope.
+          </div>
+        </div>
+
+        <figure class="screenshot-frame">
+          <img
+            src="assets/04-validation-plan.png"
+            alt="PosturePilot Validation Plan showing ops-jump-01, the report fact, a customer question, stakeholders, a test activity, and a success check."
+          >
+
+          <figcaption>
+            Highlight the fact, customer question, people to involve, test
+            activity, and success check.
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="visual-learning-step">
+        <div class="visual-copy">
+          <span class="visual-label">Task 4</span>
+
+          <h3>Check AI-written notes before sharing</h3>
+
+          <p>
+            AI can help create a first draft. You still need to check the
+            facts and remove statements that make promises for the customer.
+          </p>
+
+          <ul>
+            <li>Flag claims that say a breach happened without proof.</li>
+            <li>Remove unapproved dates, fixes, and promises.</li>
+            <li>Keep facts from the report and helpful customer questions.</li>
+          </ul>
+
+          <div class="callout">
+            <strong>Keep:</strong> “The report found that the admin-access
+            rule allows a broad range of networks.”
+          </div>
+        </div>
+
+        <figure class="screenshot-frame">
+          <img
+            src="assets/05-ai-workshop-brief.png"
+            alt="PosturePilot AI Workshop Brief showing unsupported claims flagged and evidence-based statements kept."
+          >
+
+          <figcaption>
+            Show at least one unsupported statement marked “Flag” and one
+            fact-based statement marked “Keep.”
+          </figcaption>
+        </figure>
+      </article>
+
+      <article class="visual-learning-step">
+        <div class="visual-copy">
+          <span class="visual-label">Tasks 5 and 6</span>
+
+          <h3>Finish with a meeting plan and success checks</h3>
+
+          <p>
+            End with a meeting plan that helps the customer decide what to do
+            next. Agree on a test and simple signs that the test worked.
+          </p>
+
+          <ul>
+            <li>Confirm the meeting goal, people, and limits.</li>
+            <li>Review facts, owners, work dependencies, and current safety controls.</li>
+            <li>Agree on a small test and how to return to the old setting if needed.</li>
+            <li>Choose success checks the customer can see and confirm.</li>
+          </ul>
+
+          <div class="callout">
+            <strong>Close the loop:</strong> End with clear owners, a test
+            plan, and success checks—not a promise that every security risk
+            is gone.
+          </div>
+        </div>
+
+        <figure class="screenshot-frame">
+          <img
+            src="assets/06-success.png"
+            alt="PosturePilot Workshop Builder and Proof of Value screens showing meeting agenda items, a test activity, owners, and customer success checks."
+          >
+
+          <figcaption>
+            Show meeting agenda items on one side and customer success checks
+            on the other.
+          </figcaption>
+        </figure>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+    <section id="scenario" class="scenario">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow" style="color:var(--teal-dark);border-color:#9bd7d2;">Practice story</span>
+          <h2>Meridian Financial</h2>
+          <p>Meridian Financial is a made-up financial-services company. It uses systems in its offices and in the cloud.</p>
+        </div>
+        <div class="scenario-grid">
+          <article class="card">
+  <h3>What the customer shared</h3>
+
+  <ul>
+    <li>Different teams do not review security settings in the same way.</li>
+    <li>It is not always clear who owns higher-risk systems.</li>
+    <li>Teams need a better way to decide which security findings to discuss first.</li>
+  </ul>
+
+  <h3 class="approval-heading">What has not been approved</h3>
+
+  <ul>
+    <li>A setting change or fix.</li>
+    <li>A product, service, price, or contract.</li>
+    <li>A production change or due date.</li>
+    <li>A promised business result.</li>
+  </ul>
+</article>
+          <article class="finding">
+            <div class="finding-head"><h3>Main finding for this practice</h3><p>Start with one clear fact. Ask the customer for the rest of the story.</p></div>
+            <div class="finding-body">
+              <div class="finding-row"><strong>Finding</strong><span>Broad remote-management access</span></div>
+              <div class="finding-row"><strong>System</strong><code>ops-jump-01</code></div>
+              <div class="finding-row"><strong>Level</strong><span class="badge-critical">Critical</span></div>
+              <div class="finding-row"><strong>What the report shows</strong><span>The admin-access rule allows a broad range of networks.</span></div>
+            </div>
+          </article>
+        </div>
+        <div class="card" style="margin-top:24px;">
+          <h3>What the report does not tell you</h3>
+          <ul>
+            <li>Who owns the system.</li>
+            <li>Which admins, networks, vendors, or work steps need access.</li>
+            <li>Whether the system supports important business or emergency work.</li>
+            <li>Whether other safety controls or approved exceptions already exist.</li>
+            <li>Whether it is safe to change the access rule now.</li>
+            <li>Whether anyone has used this access in a harmful way.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="lab">
+      <div class="wrap">
+        <div class="lab-intro">
+          <div>
+            <h2>Meridian Financial Practice Lab</h2>
+            <p>Use the six tasks below to turn one fact from the report into a simple plan for a customer conversation. Mark each task complete as you work.</p>
+          </div>
+          <a class="button button-primary" href="#task-1">Begin lab</a>
+        </div>
+        <div class="progress-wrap" aria-live="polite">
+          <div class="progress-top"><span id="progressText">0 of 6 tasks complete</span><span id="progressPercent">0%</span></div>
+          <div class="progress-bar" aria-label="Lab progress"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+
+        <div class="task-list">
+          <details class="task" id="task-1" open>
+            <summary><span class="summary-left"><span class="task-number">1</span>Review Assessment</span><span class="chevron">⌄</span></summary>
+            <div class="task-content">
+              <span class="workspace-label">PosturePilot area: Security Posture Overview</span>
+              <h3>Choose a finding to discuss</h3>
+              <p>Look at the dashboard. Review risk levels, systems that may need attention, systems without a clear owner, and areas that need more discussion.</p>
+              <p><strong>Choose:</strong> Broad remote-management access on <code>ops-jump-01</code> — <span class="badge-critical">Critical</span></p>
+              <div class="task-callout">A Critical finding is a good reason to start a conversation. It does not prove business harm or give permission to make a change.</div>
+              <button class="complete-task" data-task="1" type="button">Mark Task 1 complete</button>
+            </div>
+          </details>
+
+          <details class="task" id="task-2">
+            <summary><span class="summary-left"><span class="task-number">2</span>Identify Needs</span><span class="chevron">⌄</span></summary>
+            <div class="task-content">
+              <span class="workspace-label">PosturePilot area: Assessment Findings</span>
+              <h3>Separate the fact from the questions</h3>
+              <p><strong>Fact from the report:</strong> The admin-access rule allows a broad range of networks.</p>
+              <p><strong>Ask the customer:</strong></p>
+              <ul>
+                <li>Who owns this system and who can approve an access-rule change?</li>
+                <li>Which admins, networks, vendors, and emergency work steps need access?</li>
+                <li>What business or support work depends on this access?</li>
+                <li>Which safety controls or approved exceptions already exist?</li>
+                <li>When could a change be tested, and how could the team return to the old setting if needed?</li>
+              </ul>
+              <p><strong>Helpful question:</strong> “Which access paths are approved and needed for daily work, support work, and emergencies?”</p>
+              <div class="task-callout">Do not say the customer was hacked, harmed, noncompliant, or needs an immediate fix unless you have clear proof.</div>
+              <button class="complete-task" data-task="2" type="button">Mark Task 2 complete</button>
+            </div>
+          </details>
+
+          <details class="task" id="task-3">
+            <summary><span class="summary-left"><span class="task-number">3</span>Draft Plan</span><span class="chevron">⌄</span></summary>
+            <div class="task-content">
+              <span class="workspace-label">PosturePilot area: Validation Plan</span>
+              <h3>Make a short customer plan</h3>
+              <p>Connect the fact in the report to a customer question, a safe test, and a clear sign of success.</p>
+              <table class="mini-table">
+                <tbody>
+                  <tr><th>Why discuss this now?</th><td>Confirm access needs before thinking about a small access-rule change.</td></tr>
+                  <tr><th>Fact from the report</th><td>The access rule allows a broad range of networks.</td></tr>
+                  <tr><th>Question for the customer</th><td>Which access paths are approved and needed for daily work, support work, and emergencies?</td></tr>
+                  <tr><th>People to involve</th><td>Security, infrastructure, network, identity, system owner, and change-management teams.</td></tr>
+                  <tr><th>Test activity</th><td>List required access paths; test a small change during an approved time; keep a way to return to the old setting.</td></tr>
+                  <tr><th>What success looks like</th><td>Approved admins can still get in, while unapproved networks cannot, within the agreed scope.</td></tr>
+                </tbody>
+              </table>
+              <div class="task-callout">A good plan connects a fact to a customer-approved test. It does not tell the customer to make a change before the right people review it.</div>
+              <button class="complete-task" data-task="3" type="button">Mark Task 3 complete</button>
+            </div>
+          </details>
+
+          <details class="task" id="task-4">
+            <summary><span class="summary-left"><span class="task-number">4</span>Check AI Content</span><span class="chevron">⌄</span></summary>
+            <div class="task-content">
+              <span class="workspace-label">PosturePilot area: AI Workshop Brief</span>
+              <h3>Check the AI-written notes</h3>
+              <p>Read the AI-written meeting summary before anyone shares it. Flag statements that are not supported by the report or that make promises for Meridian Financial.</p>
+              <p><strong>Flag statements that:</strong></p>
+              <ul>
+                <li>Say or suggest that someone broke into the system.</li>
+                <li>Promise less risk, full compliance, or no future attacks.</li>
+                <li>Assume who owns the system or who will approve a change.</li>
+                <li>Promise a fix, product, purchase, timeline, or business result.</li>
+                <li>Treat a possible concern as a proven fact.</li>
+              </ul>
+              <p><strong>Keep this fact-based statement:</strong> “The report found that the admin-access rule for <code>ops-jump-01</code> allows a broad range of networks.”</p>
+              <div class="task-callout">AI can help with a first draft. You are still responsible for checking the facts, protecting private information, and avoiding promises the customer has not approved.</div>
+              <button class="complete-task" data-task="4" type="button">Mark Task 4 complete</button>
+            </div>
+          </details>
+
+          <details class="task" id="task-5">
+            <summary><span class="summary-left"><span class="task-number">5</span>Plan the Workshop</span><span class="chevron">⌄</span></summary>
+            <div class="task-content">
+              <span class="workspace-label">PosturePilot area: Workshop Planning</span>
+              <h3>Choose a meeting plan that checks the facts first</h3>
+              <ol>
+                <li>Agree on the goal, who is in the meeting, what is included, and what decision is not being made today.</li>
+                <li>Review what the report shows, what it does not show, and what questions are still open.</li>
+                <li>Confirm the owner, work that depends on the system, current safety controls, and limits.</li>
+                <li>Decide with the customer how important this finding is.</li>
+                <li>Talk about possible options, testing, and how to undo a change if needed.</li>
+                <li>Agree on the test work, what success looks like, who owns each next step, and what happens next.</li>
+              </ol>
+              <div class="task-callout">A good technical meeting helps the customer make an informed choice. It does not make the choice for them.</div>
+              <button class="complete-task" data-task="5" type="button">Mark Task 5 complete</button>
+            </div>
+          </details>
+
+          <details class="task" id="task-6">
+            <summary><span class="summary-left"><span class="task-number">6</span>Define Success</span><span class="chevron">⌄</span></summary>
+            <div class="task-content">
+              <span class="workspace-label">PosturePilot area: Proof of Value</span>
+              <h3>Choose three clear success checks</h3>
+              <p>Choose success checks that the customer can see, test, and agree with.</p>
+              <ul>
+                <li>The customer confirms which networks, admins, and support work steps need access to <code>ops-jump-01</code>.</li>
+                <li>The customer checks that approved admins can still get needed access after a small, approved access-rule change.</li>
+                <li>The customer checks that unapproved networks cannot get access after the agreed change.</li>
+                <li>The customer records the scope, owner, test results, backup plan, and final result.</li>
+                <li>The customer checks whether the chosen setting matches its approved access rule or approved exception.</li>
+              </ul>
+              <p><strong>Do not choose statements that promise to:</strong> remove all cyber risk, stop every future attack, guarantee compliance, finish work by an unapproved date, or prove that no breach happened.</p>
+              <div class="task-callout">Good success checks describe what the customer can see after an agreed test. They do not promise more than the team can prove.</div>
+              <button class="complete-task" data-task="6" type="button">Mark Task 6 complete</button>
+            </div>
+          </details>
+        </div>
+
+        <section class="completion" id="completion" aria-live="polite">
+          <h2>Lab complete</h2>
+          <p>You used the report to make a customer-centered plan for a technical conversation.</p>
+          <div class="reflection">
+            <label for="reflectionText">Before suggesting a change to the access rule, what is the most important thing Meridian Financial still needs to confirm?</label>
+            <textarea id="reflectionText" placeholder="Write your reflection here..."></textarea>
+            <div class="save-row">
+              <button class="save-button" type="button" id="saveReflection">Save reflection</button>
+              <span class="save-status" id="saveStatus" role="status"></span>
+            </div>
+          </div>
+          <div class="callout" style="margin-bottom:0;"><strong>Field-ready principle:</strong> The report starts the conversation. Customer answers help the team make a safe, informed decision.</div>
+        </section>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Fictional, vendor-neutral learning simulation • No real customer data is used</span>
+      <a class="back-top" href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const storageKey = 'posturepilot-lab-complete';
+      const reflectionKey = 'posturepilot-reflection';
+      const buttons = [...document.querySelectorAll('.complete-task')];
+      const progressText = document.getElementById('progressText');
+      const progressPercent = document.getElementById('progressPercent');
+      const progressFill = document.getElementById('progressFill');
+      const completion = document.getElementById('completion');
+      const reflection = document.getElementById('reflectionText');
+      const saveReflection = document.getElementById('saveReflection');
+      const saveStatus = document.getElementById('saveStatus');
+      let complete = new Set(JSON.parse(localStorage.getItem(storageKey) || '[]'));
+
+      function updateProgress() {
+        buttons.forEach((button) => {
+          const id = button.dataset.task;
+          const isDone = complete.has(id);
+          button.textContent = isDone ? `Task ${id} complete ✓` : `Mark Task ${id} complete`;
+          button.classList.toggle('completed', isDone);
+          button.closest('.task').classList.toggle('done', isDone);
+          button.setAttribute('aria-pressed', String(isDone));
+        });
+        const count = complete.size;
+        const percent = Math.round((count / buttons.length) * 100);
+        progressText.textContent = `${count} of ${buttons.length} tasks complete`;
+        progressPercent.textContent = `${percent}%`;
+        progressFill.style.width = `${percent}%`;
+        completion.classList.toggle('show', count === buttons.length);
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const id = button.dataset.task;
+          if (complete.has(id)) complete.delete(id);
+          else complete.add(id);
+          localStorage.setItem(storageKey, JSON.stringify([...complete]));
+          updateProgress();
+          if (complete.size === buttons.length) completion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      reflection.value = localStorage.getItem(reflectionKey) || '';
+      saveReflection.addEventListener('click', () => {
+        localStorage.setItem(reflectionKey, reflection.value.trim());
+        saveStatus.textContent = 'Reflection saved on this device.';
+        setTimeout(() => { saveStatus.textContent = ''; }, 3500);
+      });
+
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>
