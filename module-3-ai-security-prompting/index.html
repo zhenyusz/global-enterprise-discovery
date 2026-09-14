@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A 10-minute microlearning module for writing focused security-hardening prompts for PosturePilot AI Assistant." />
+  <title>Write Better Security Prompts | PosturePilot Learning Lab</title>
+  <style>
+    :root {
+      --ink: #152338;
+      --muted: #5f6f82;
+      --navy: #102a43;
+      --navy-2: #173f63;
+      --teal: #0c8a87;
+      --teal-dark: #086967;
+      --teal-soft: #e7f7f5;
+      --gold: #e7ae43;
+      --gold-soft: #fff6df;
+      --danger: #a33535;
+      --danger-soft: #fff0f0;
+      --success: #1d7a4f;
+      --success-soft: #eaf8f1;
+      --surface: #ffffff;
+      --surface-alt: #f4f7fa;
+      --line: #d8e1ea;
+      --radius: 16px;
+      --max: 1060px;
+      --reading: 860px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--surface-alt);
+      line-height: 1.58;
+    }
+    button, textarea, input { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 3px solid #f2b84b; outline-offset: 3px; }
+    h1, h2, h3, p { margin-top: 0; }
+    code { color: var(--navy); font-weight: 800; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--navy);
+      color: #fff;
+      box-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+    }
+    .header-inner, .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+    .header-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand { color: #fff; text-decoration: none; font-weight: 850; letter-spacing: .01em; }
+    .brand span { color: #87e2dd; }
+    .header-note { color: #c9d8e6; font-size: .88rem; }
+
+    .hero {
+      color: #fff;
+      background: radial-gradient(circle at 82% 20%, rgba(37, 189, 181, .36), transparent 32%), linear-gradient(135deg, #102a43 0%, #173f63 55%, #0b6f73 100%);
+      padding: 68px 0 60px;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.3fr .7fr; gap: 42px; align-items: center; }
+    .eyebrow {
+      display: inline-flex;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, .38);
+      border-radius: 999px;
+      color: #d9f7f5;
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .eyebrow.light { color: var(--teal-dark); border-color: #9bd7d2; }
+    h1 { margin: 16px 0; max-width: 760px; font-size: clamp(2.35rem, 5vw, 4.2rem); line-height: 1.05; letter-spacing: -.045em; }
+    .lede { max-width: 710px; color: #d7e8f5; font-size: 1.15rem; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 25px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 45px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .18s ease, background .18s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: var(--navy); background: #fff; }
+    .button-secondary { color: #fff; border-color: rgba(255,255,255,.56); background: transparent; }
+    .hero-card {
+      padding: 23px;
+      border: 1px solid rgba(255,255,255,.21);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.11);
+      backdrop-filter: blur(8px);
+    }
+    .hero-card h2 { font-size: 1.05rem; margin-bottom: 13px; }
+    .hero-card dl { margin: 0; display: grid; gap: 11px; }
+    .hero-card div { display: grid; grid-template-columns: 100px 1fr; gap: 10px; }
+    .hero-card dt { color: #b8d9e8; font-size: .85rem; font-weight: 750; }
+    .hero-card dd { margin: 0; font-size: .92rem; }
+
+    section { padding: 58px 0; }
+    section:nth-of-type(even) { background: var(--surface); }
+    .section-heading { max-width: var(--reading); margin-bottom: 28px; }
+    .section-heading h2 { color: var(--navy); font-size: clamp(1.75rem, 3vw, 2.5rem); line-height: 1.13; letter-spacing: -.03em; margin: 10px 0; }
+    .section-heading p { color: var(--muted); font-size: 1.04rem; margin-bottom: 0; }
+    .single-column { width: min(var(--reading), 100%); }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: 24px;
+      box-shadow: 0 8px 22px rgba(21,35,56,.05);
+    }
+    .scenario-card { background: linear-gradient(135deg, #ecfbfa, #f7fcff); }
+    .callout {
+      margin-top: 20px;
+      padding: 16px 18px;
+      border-left: 5px solid var(--teal);
+      border-radius: 0 12px 12px 0;
+      background: var(--teal-soft);
+    }
+    .callout strong { color: var(--teal-dark); }
+    .caution { border-left-color: var(--gold); background: var(--gold-soft); }
+
+    .data-list { display: grid; gap: 0; margin: 18px 0 0; }
+    .data-list div { display: grid; grid-template-columns: 165px 1fr; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+    .data-list div:last-child { border-bottom: 0; }
+    .data-list dt { color: var(--muted); font-size: .88rem; font-weight: 800; }
+    .data-list dd { margin: 0; }
+
+    .component-stack { display: grid; gap: 14px; width: min(var(--reading), 100%); }
+    .component-card {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+    }
+    .component-number {
+      display: grid;
+      place-items: center;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      background: var(--teal-soft);
+      color: var(--teal-dark);
+      font-size: .85rem;
+      font-weight: 850;
+    }
+    .component-card h3 { color: var(--navy); font-size: 1.05rem; line-height: 1.2; margin-bottom: 6px; }
+    .component-card p { color: var(--muted); margin-bottom: 0; }
+    .component-example { color: var(--navy) !important; font-weight: 700; margin-top: 8px !important; }
+
+    .example-stack { display: grid; gap: 18px; width: min(var(--reading), 100%); }
+    .example-card { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: #fff; }
+    .example-head { padding: 16px 20px; background: #eff8f7; border-bottom: 1px solid var(--line); }
+    .example-head h3 { margin: 0; color: var(--navy); font-size: 1.1rem; }
+    .example-body { padding: 19px 20px; }
+    .prompt-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .prompt-box { border: 1px solid var(--line); border-radius: 12px; padding: 15px; }
+    .prompt-box.okay { background: #fbfcfd; }
+    .prompt-box.better { border-color: #8ccfca; background: #f2fbfa; }
+    .prompt-label { display: inline-block; margin-bottom: 9px; border-radius: 999px; padding: 3px 9px; background: #e9edf1; color: #506070; font-size: .74rem; font-weight: 850; text-transform: uppercase; letter-spacing: .05em; }
+    .prompt-box.better .prompt-label { background: var(--teal-soft); color: var(--teal-dark); }
+    .prompt { margin: 0; color: var(--navy); font-size: .95rem; }
+    .why { margin: 12px 0 0; color: var(--muted); font-size: .9rem; }
+
+    .lab-shell { width: min(var(--reading), 100%); border: 1px solid #bfe2df; border-radius: var(--radius); overflow: hidden; background: #fff; box-shadow: 0 12px 30px rgba(12, 138, 135, .1); }
+    .lab-head { padding: 22px; color: #fff; background: var(--navy); }
+    .lab-head h2 { margin-bottom: 7px; }
+    .lab-head p { margin-bottom: 0; color: #d7e8f5; }
+    .progress-wrap { padding: 18px 22px 0; }
+    .progress-top { display: flex; justify-content: space-between; color: var(--muted); font-size: .89rem; margin-bottom: 7px; }
+    .progress-bar { overflow: hidden; height: 10px; border-radius: 999px; background: #dfe8ee; }
+    .progress-fill { height: 100%; width: 0%; border-radius: inherit; background: linear-gradient(90deg, var(--teal), #52c9c0); transition: width .25s ease; }
+    .lab-body { padding: 22px; }
+    .prompt-facts { display: grid; gap: 12px; }
+    .prompt-fact { padding: 13px 14px; border: 1px solid var(--line); border-radius: 10px; background: #f8fbfc; }
+    .prompt-fact strong { display: block; color: var(--teal-dark); font-size: .84rem; margin-bottom: 3px; }
+    .prompt-preview { margin-top: 20px; padding: 18px; border: 1px solid #bfe2df; border-radius: 12px; background: #f5fcfb; }
+    .prompt-preview h3 { color: var(--teal-dark); font-size: 1rem; margin-bottom: 8px; }
+    .prompt-preview p { margin-bottom: 0; color: var(--navy); white-space: pre-line; }
+    .action-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 18px; }
+    .action-button { border: 0; border-radius: 10px; padding: 10px 15px; color: #fff; background: var(--navy); font-weight: 850; }
+    .action-button:hover { background: var(--navy-2); }
+    .help { color: var(--muted); font-size: .86rem; }
+    .feedback { display: none; margin-top: 16px; padding: 14px 16px; border-radius: 10px; font-weight: 700; }
+    .feedback.show { display: block; }
+    .feedback.good { color: #155b3b; background: var(--success-soft); border: 1px solid #b9dfca; }
+
+    .review-card { width: min(var(--reading), 100%); }
+    .review-list { display: grid; gap: 11px; margin-top: 16px; }
+    .review-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+    .review-item input { width: 19px; height: 19px; flex: 0 0 auto; margin-top: 2px; accent-color: var(--teal); }
+    .review-item label { cursor: pointer; margin: 0; color: var(--ink); font-weight: 650; }
+    .review-item.correct-flag { border-color: #d99a9a; background: var(--danger-soft); }
+    .review-item.correct-keep { border-color: #9ed5b7; background: var(--success-soft); }
+    .review-result { display: none; margin-top: 16px; padding: 16px; border-radius: 12px; }
+    .review-result.show { display: block; }
+    .review-result.pass { background: var(--success-soft); color: #155b3b; border: 1px solid #b9dfca; }
+    .review-result.retry { background: var(--gold-soft); color: #785514; border: 1px solid #f0d191; }
+
+    .completion { display: none; width: min(var(--reading), 100%); margin-top: 24px; padding: 23px; border: 1px solid #b9dfca; border-radius: var(--radius); background: var(--success-soft); }
+    .completion.show { display: block; }
+    .completion h2 { color: var(--success); margin-bottom: 9px; }
+    .reflection { margin-top: 18px; }
+    label { display: block; color: var(--navy); font-size: .92rem; font-weight: 850; margin-bottom: 7px; }
+    textarea { width: 100%; min-height: 104px; resize: vertical; border: 1px solid #aabac9; border-radius: 10px; background: #fff; color: var(--ink); padding: 11px 12px; }
+    .save-status { color: var(--success); font-weight: 800; font-size: .9rem; }
+
+    footer { padding: 24px 0; background: #081a2a; color: #b7c8d8; font-size: .88rem; }
+    .footer-inner { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; display: flex; justify-content: space-between; gap: 16px; }
+
+    @media (max-width: 880px) {
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .header-note { display: none; }
+      .header-inner, .wrap, .footer-inner { width: min(var(--max), calc(100% - 28px)); }
+      .hero { padding: 54px 0 48px; }
+      section { padding: 45px 0; }
+      .prompt-compare { grid-template-columns: 1fr; }
+      .data-list div { grid-template-columns: 1fr; gap: 3px; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top">Posture<span>Pilot</span> Learning Lab</a>
+      <span class="header-note">Microlearning • 10 minutes</span>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">AI-Assisted Security Hardening</span>
+          <h1>Write Better Security Prompts for PosturePilot AI Assistant</h1>
+          <p class="lede">Practice asking for a focused security-hardening review of a customer-facing server.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#start">Start the 10-minute module</a>
+            <a class="button button-secondary" href="#lab">Go to the practice lab</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Course details">
+          <h2>Course details</h2>
+          <dl>
+            <div><dt>Audience</dt><dd>Sales Engineers and customer-facing technical teams</dd></div>
+            <div><dt>Time</dt><dd>10 minutes</dd></div>
+            <div><dt>Scenario</dt><dd>Meridian Financial web-server support review</dd></div>
+            <div><dt>Outcome</dt><dd>One focused PosturePilot prompt</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section id="start">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow light">Scenario</span>
+          <h2>Meridian Financial: Web Server Support Review</h2>
+          <p>You are preparing for a customer security posture discussion. Your goal is to ask PosturePilot for a focused review—not to declare a compromise or make a final remediation decision.</p>
+        </div>
+        <div class="single-column">
+          <article class="card scenario-card">
+            <p>Meridian Financial’s customer account portal is hosted on <code>web-server-01</code>. PosturePilot shows that the server is internet-facing, has one missing security update, and will reach vendor end of support in 60 days.</p>
+            <h3>What PosturePilot currently shows</h3>
+            <dl class="data-list">
+              <div><dt>Asset</dt><dd><code>web-server-01</code></dd></div>
+              <div><dt>Environment</dt><dd>Production</dd></div>
+              <div><dt>Business role</dt><dd>Hosts the customer account portal</dd></div>
+              <div><dt>Internet exposure</dt><dd>Yes</dd></div>
+              <div><dt>Patch status</dt><dd>One security update is missing</dd></div>
+              <div><dt>Vendor support</dt><dd>Ends in 60 days</dd></div>
+              <div><dt>Logging</dt><dd>Web access logging is enabled</dd></div>
+              <div><dt>Still to confirm</dt><dd>Whether web access logs are centrally forwarded</dd></div>
+            </dl>
+            <div class="callout caution"><strong>Use AI carefully:</strong> PosturePilot can organize available security information, but it cannot confirm a compromise or make a final remediation decision. Validate important findings with the customer’s technical team.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow light">Prompt essentials</span>
+          <h2>What makes a quality prompt?</h2>
+          <p>Effective prompts are detailed and context-rich. They help PosturePilot understand exactly what you need so it can return relevant, actionable results.</p>
+        </div>
+        <div class="component-stack">
+          <article class="component-card">
+            <div class="component-number">1</div>
+            <div><h3>Information to review</h3><p>Tell PosturePilot which security data or hardening areas to examine.</p><p class="component-example">Example: Vendor support status, missing security updates, internet exposure, and log-forwarding status.</p></div>
+          </article>
+          <article class="component-card">
+            <div class="component-number">2</div>
+            <div><h3>Asset or security area</h3><p>Name the exact device, application, account, or control.</p><p class="component-example">Example: <code>web-server-01</code>.</p></div>
+          </article>
+          <article class="component-card">
+            <div class="component-number">3</div>
+            <div><h3>Context and filters</h3><p>Add where the asset operates and why it matters.</p><p class="component-example">Example: Internet-facing production server that hosts the customer account portal.</p></div>
+          </article>
+          <article class="component-card">
+            <div class="component-number">4</div>
+            <div><h3>Time or deadline</h3><p>Include the relevant review window or lifecycle deadline.</p><p class="component-example">Example: Before vendor support ends in 60 days.</p></div>
+          </article>
+        </div>
+        <div class="single-column"><div class="callout"><strong>Simple rule:</strong> Give the assistant enough detail to review the right information for the right asset, in the right context, at the right time.</div></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow light">Examples</span>
+          <h2>Turn an okay prompt into a better one</h2>
+          <p>Each better prompt adds one essential detail. Together, the four details create a useful security-hardening request.</p>
+        </div>
+        <div class="example-stack">
+          <article class="example-card">
+            <div class="example-head"><h3>1. Tell PosturePilot what to review</h3></div>
+            <div class="example-body"><div class="prompt-compare"><div class="prompt-box okay"><span class="prompt-label">Okay prompt</span><p class="prompt">“Check the server for security issues.”</p></div><div class="prompt-box better"><span class="prompt-label">Better prompt</span><p class="prompt">“Review vendor support status, missing security updates, internet exposure, and centralized log-forwarding status.”</p></div></div><p class="why">The better prompt directs the assistant toward specific hardening evidence instead of asking for a broad security opinion.</p></div>
+          </article>
+          <article class="example-card">
+            <div class="example-head"><h3>2. Name the asset or security area</h3></div>
+            <div class="example-body"><div class="prompt-compare"><div class="prompt-box okay"><span class="prompt-label">Okay prompt</span><p class="prompt">“Is the web server secure?”</p></div><div class="prompt-box better"><span class="prompt-label">Better prompt</span><p class="prompt">“Review web-server-01, which hosts Meridian Financial’s customer account portal.”</p></div></div><p class="why">The better prompt identifies the exact server and explains its business role.</p></div>
+          </article>
+          <article class="example-card">
+            <div class="example-head"><h3>3. Add context and filters</h3></div>
+            <div class="example-body"><div class="prompt-compare"><div class="prompt-box okay"><span class="prompt-label">Okay prompt</span><p class="prompt">“Show the server configuration.”</p></div><div class="prompt-box better"><span class="prompt-label">Better prompt</span><p class="prompt">“Review web-server-01 in the production environment. It is internet-facing and hosts the customer account portal.”</p></div></div><p class="why">The better prompt narrows the review to the production asset and its relevant risk context.</p></div>
+          </article>
+          <article class="example-card">
+            <div class="example-head"><h3>4. Include a time or support deadline</h3></div>
+            <div class="example-body"><div class="prompt-compare"><div class="prompt-box okay"><span class="prompt-label">Okay prompt</span><p class="prompt">“When should the server be updated?”</p></div><div class="prompt-box better"><span class="prompt-label">Better prompt</span><p class="prompt">“Identify support and hardening items to review before vendor support ends in 60 days.”</p></div></div><p class="why">The better prompt gives the review a concrete planning deadline without assuming a remediation decision.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="lab">
+      <div class="wrap">
+        <div class="lab-shell">
+          <div class="lab-head"><h2>Practice lab: Ask PosturePilot the right question</h2><p>Build a prompt for Meridian Financial’s web-server review. Include all four prompt details, then check your work.</p></div>
+          <div class="progress-wrap"><div class="progress-top"><span>Practice progress</span><span id="progressText">0 of 2 checks complete</span></div><div class="progress-bar" aria-label="Practice progress"><div class="progress-fill" id="progressFill"></div></div></div>
+          <div class="lab-body">
+            <div class="prompt-facts">
+              <div class="prompt-fact"><strong>Information to review</strong>Vendor support, missing security updates, internet exposure, and centralized log-forwarding status</div>
+              <div class="prompt-fact"><strong>Asset</strong><code>web-server-01</code></div>
+              <div class="prompt-fact"><strong>Context</strong>Internet-facing production server that hosts the customer account portal</div>
+              <div class="prompt-fact"><strong>Deadline</strong>Vendor support ends in 60 days</div>
+            </div>
+            <div class="prompt-preview" aria-live="polite"><h3>Model prompt</h3><p>Review web-server-01, an internet-facing production server that hosts Meridian Financial’s customer account portal.
+
+Review vendor support status, missing security updates, internet exposure, and centralized log-forwarding status.
+
+Identify hardening items to review before vendor support ends in 60 days. Separate confirmed findings from items that still need validation.</p></div>
+            <div class="action-row"><button class="action-button" id="checkPrompt" type="button">Check my prompt</button><span class="help">Compare your draft to the model prompt above.</span></div>
+            <div class="feedback good" id="promptFeedback" role="status"><strong>Strong prompt.</strong> It identifies the asset, security information, operating context, and deadline. It also asks PosturePilot to separate confirmed findings from items that still need validation.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-heading"><span class="eyebrow light">Verify before sharing</span><h2>Review the AI output</h2><p>PosturePilot can organize available data, but it cannot turn incomplete information into proof. Flag the statements that should not be used as confirmed customer-facing findings.</p></div>
+        <article class="card review-card">
+          <h3>PosturePilot AI Assistant: Draft output</h3><p class="help">Select every statement that should be flagged.</p>
+          <div class="review-list" id="reviewList">
+            <div class="review-item" data-answer="flag"><input id="s1" type="checkbox" /><label for="s1">web-server-01 is insecure and should be shut down immediately.</label></div>
+            <div class="review-item" data-answer="flag"><input id="s2" type="checkbox" /><label for="s2">The server will be breached when vendor support ends in 60 days.</label></div>
+            <div class="review-item" data-answer="keep"><input id="s3" type="checkbox" /><label for="s3">The server has one missing security update.</label></div>
+            <div class="review-item" data-answer="keep"><input id="s4" type="checkbox" /><label for="s4">The server is internet-facing and hosts the customer account portal.</label></div>
+            <div class="review-item" data-answer="keep"><input id="s5" type="checkbox" /><label for="s5">The technical team should confirm whether web access logs are forwarded to the central logging system.</label></div>
+          </div>
+          <div class="action-row"><button class="action-button" id="checkReview" type="button">Check my selections</button></div>
+          <div class="review-result" id="reviewResult" role="status"></div>
+        </article>
+        <div class="completion" id="completion">
+          <h2>Module complete</h2><p>You practiced writing a focused PosturePilot prompt and checking an AI draft for unsupported security claims.</p>
+          <div class="reflection"><label for="reflection">Before you update the customer, what is one item that still needs validation?</label><textarea id="reflection" placeholder="Example: Confirm whether web access logs are sent to the central logging system."></textarea><div class="action-row"><button class="action-button" id="saveReflection" type="button">Save reflection</button><span class="save-status" id="saveStatus" aria-live="polite"></span></div></div>
+          <div class="callout caution"><strong>Remember:</strong> PosturePilot can help organize security information. Confirm important findings with the customer’s technical team before describing risk, recommending a change, or making a commitment.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="footer-inner"><span>PosturePilot Learning Lab • Fictional portfolio learning experience</span><a class="brand" href="#top">Back to top ↑</a></div></footer>
+
+  <script>
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const promptFeedback = document.getElementById('promptFeedback');
+    const reviewResult = document.getElementById('reviewResult');
+    const completion = document.getElementById('completion');
+    let promptChecked = false;
+    let reviewChecked = false;
+
+    function updateProgress() {
+      const complete = Number(promptChecked) + Number(reviewChecked);
+      progressFill.style.width = `${complete * 50}%`;
+      progressText.textContent = `${complete} of 2 checks complete`;
+      if (complete === 2) completion.classList.add('show');
+    }
+
+    document.getElementById('checkPrompt').addEventListener('click', () => {
+      promptChecked = true;
+      promptFeedback.classList.add('show');
+      updateProgress();
+    });
+
+    document.getElementById('checkReview').addEventListener('click', () => {
+      const items = [...document.querySelectorAll('.review-item')];
+      let correct = 0;
+      items.forEach(item => {
+        const selected = item.querySelector('input').checked;
+        const shouldFlag = item.dataset.answer === 'flag';
+        item.classList.remove('correct-flag', 'correct-keep');
+        item.classList.add(shouldFlag ? 'correct-flag' : 'correct-keep');
+        if (selected === shouldFlag) correct += 1;
+      });
+      reviewResult.classList.add('show');
+      if (correct === items.length) {
+        reviewChecked = true;
+        reviewResult.className = 'review-result show pass';
+        reviewResult.innerHTML = '<strong>Correct.</strong> Flag statements that claim a future breach or prescribe immediate action. Keep supported facts and appropriate validation steps.';
+      } else {
+        reviewResult.className = 'review-result show retry';
+        reviewResult.innerHTML = `<strong>You matched ${correct} of ${items.length} statements.</strong> Red items should be flagged because they make unsupported conclusions or claims. Green items are supported facts or appropriate next steps.`;
+      }
+      updateProgress();
+    });
+
+    const reflection = document.getElementById('reflection');
+    const saveStatus = document.getElementById('saveStatus');
+    reflection.value = localStorage.getItem('posturepilotWebServerReflection') || '';
+    document.getElementById('saveReflection').addEventListener('click', () => {
+      const response = reflection.value.trim();
+      if (response) {
+        localStorage.setItem('posturepilotWebServerReflection', response);
+        saveStatus.textContent = 'Reflection saved in this browser.';
+      } else {
+        saveStatus.textContent = 'Add a response before saving.';
+      }
+    });
+  </script>
+</body>
+</html>
