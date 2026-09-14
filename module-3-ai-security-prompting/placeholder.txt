@@ -1,0 +1,1 @@
+This folder contains Module 3: AI-Assisted Security Hardening Prompts.
