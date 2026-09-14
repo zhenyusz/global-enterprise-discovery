@@ -4,7 +4,7 @@ An interactive, browser-based microlearning prototype that teaches new and devel
 
 Built as a single, self-contained `index.html` with vanilla HTML, CSS, and JavaScript. No frameworks, no build step, no dependencies, no external assets.
 
-> **Live demo:** _add your GitHub Pages URL here_ (e.g. `https://your-username.github.io/global-enterprise-discovery/`)
+> **Live demo:** 
 
 ---
 
