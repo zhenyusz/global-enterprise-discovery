@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260">
+  <defs>
+    <radialGradient id="furGrad" cx="38%" cy="22%" r="85%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#f2f7fa"/>
+      <stop offset="100%" stop-color="#d3e2ea"/>
+    </radialGradient>
+    <linearGradient id="earGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#dbe6ea"/>
+    </linearGradient>
+    <radialGradient id="eyeGrad" cx="35%" cy="28%" r="80%">
+      <stop offset="0%" stop-color="#2c4b6c"/>
+      <stop offset="55%" stop-color="#12283f"/>
+      <stop offset="100%" stop-color="#081522"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ground shadow -->
+  <ellipse cx="100" cy="250" rx="46" ry="7" fill="#102a43" opacity=".14"/>
+
+  <!-- feet -->
+  <ellipse cx="86" cy="241" rx="8" ry="6" fill="#173f63"/>
+  <ellipse cx="114" cy="241" rx="8" ry="6" fill="#173f63"/>
+
+  <!-- coat body -->
+  <path d="M58 168 C54 168 50 176 50 190 L50 234 C50 239 55 242 61 242 L139 242 C145 242 150 239 150 234 L150 190 C150 176 146 168 142 168 L122 158 L100 172 L78 158 Z" fill="#ffffff" stroke="#d8e1ea" stroke-width="2"/>
+
+  <!-- lapels -->
+  <path d="M100 172 L79 160 L86 196 L100 182 Z" fill="#f4f8fa" stroke="#d8e1ea" stroke-width="1.5"/>
+  <path d="M100 172 L121 160 L114 196 L100 182 Z" fill="#f4f8fa" stroke="#d8e1ea" stroke-width="1.5"/>
+
+  <!-- buttons -->
+  <circle cx="100" cy="208" r="2.6" fill="#c9d6de"/>
+  <circle cx="100" cy="224" r="2.6" fill="#c9d6de"/>
+
+  <!-- pocket + pens -->
+  <rect x="106" y="200" width="24" height="18" rx="2" fill="none" stroke="#d8e1ea" stroke-width="1.5"/>
+  <rect x="110" y="188" width="3.2" height="16" rx="1.4" fill="#e7ae43" transform="rotate(-8 110 196)"/>
+  <rect x="116" y="187" width="3.2" height="17" rx="1.4" fill="#0c8a87" transform="rotate(-2 116 195)"/>
+  <rect x="122" y="188" width="3.2" height="16" rx="1.4" fill="#102a43" transform="rotate(6 122 196)"/>
+
+  <!-- stethoscope -->
+  <path d="M72 168 C70 190 82 202 100 203 C118 202 130 190 128 168" fill="none" stroke="#0c8a87" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M100 203 L100 216" fill="none" stroke="#0c8a87" stroke-width="4.5" stroke-linecap="round"/>
+  <circle cx="72" cy="166" r="4" fill="#173f63"/>
+  <circle cx="128" cy="166" r="4" fill="#173f63"/>
+  <circle cx="100" cy="222" r="7.5" fill="#173f63"/>
+  <circle cx="100" cy="222" r="3.4" fill="#e7f7f5"/>
+
+  <!-- arms (coat sleeves, resting) -->
+  <ellipse cx="54" cy="205" rx="14" ry="18" fill="url(#furGrad)" stroke="#d8e1ea" stroke-width="1.5" transform="rotate(10 54 205)"/>
+  <ellipse cx="146" cy="205" rx="14" ry="18" fill="url(#furGrad)" stroke="#d8e1ea" stroke-width="1.5" transform="rotate(-10 146 205)"/>
+
+  <!-- ears -->
+  <path d="M68 98 C50 88 40 56 55 20 C74 34 86 70 89 100 C82 104 74 103 68 98 Z" fill="url(#earGrad)" stroke="#d8e1ea" stroke-width="1.5"/>
+  <path d="M132 98 C150 88 160 56 145 20 C126 34 114 70 111 100 C118 104 126 103 132 98 Z" fill="url(#earGrad)" stroke="#d8e1ea" stroke-width="1.5"/>
+  <path d="M69 90 C58 78 53 56 61 32 C72 44 78 68 80 92 Z" fill="#e7f7f5"/>
+  <path d="M131 90 C142 78 147 56 139 32 C128 44 122 68 120 92 Z" fill="#e7f7f5"/>
+
+  <!-- forehead fringe -->
+  <path d="M82 46 C79 34 84 24 90 22 C88 32 89 42 92 50 Z" fill="url(#earGrad)"/>
+  <path d="M94 40 C93 26 99 14 107 12 C104 24 104 36 106 46 Z" fill="url(#earGrad)"/>
+  <path d="M110 44 C112 30 120 20 128 20 C124 30 122 40 122 50 Z" fill="url(#earGrad)"/>
+  <path d="M100 46 C99 36 103 28 108 26 C107 34 107 42 108 50 Z" fill="url(#earGrad)"/>
+
+  <!-- head -->
+  <ellipse cx="100" cy="112" rx="58" ry="54" fill="url(#furGrad)"/>
+
+  <!-- eyes -->
+  <circle cx="78" cy="116" r="17" fill="url(#eyeGrad)"/>
+  <circle cx="122" cy="116" r="17" fill="url(#eyeGrad)"/>
+  <ellipse cx="72" cy="109" rx="5.4" ry="6.8" fill="#ffffff" opacity=".92"/>
+  <ellipse cx="116" cy="109" rx="5.4" ry="6.8" fill="#ffffff" opacity=".92"/>
+  <circle cx="82" cy="122" r="2.3" fill="#ffffff" opacity=".55"/>
+  <circle cx="126" cy="122" r="2.3" fill="#ffffff" opacity=".55"/>
+
+  <!-- glasses (round wire frames) -->
+  <circle cx="78" cy="116" r="22" fill="none" stroke="#173f63" stroke-width="3"/>
+  <circle cx="122" cy="116" r="22" fill="none" stroke="#173f63" stroke-width="3"/>
+  <path d="M100 114 Q100 108 100 114" stroke="#173f63" stroke-width="3" fill="none"/>
+  <path d="M92 111 Q100 105 108 111" fill="none" stroke="#173f63" stroke-width="3" stroke-linecap="round"/>
+  <path d="M56 118 Q47 116 42 120" fill="none" stroke="#173f63" stroke-width="3" stroke-linecap="round"/>
+  <path d="M144 118 Q153 116 158 120" fill="none" stroke="#173f63" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- nose + mouth -->
+  <ellipse cx="94" cy="144" rx="2.6" ry="1.9" fill="#4a5b6b" opacity=".75"/>
+  <ellipse cx="106" cy="144" rx="2.6" ry="1.9" fill="#4a5b6b" opacity=".75"/>
+  <path d="M94 151 Q100 155 106 151" fill="none" stroke="#4a5b6b" stroke-width="1.6" stroke-linecap="round" opacity=".65"/>
+
+  <!-- blush -->
+  <ellipse cx="52" cy="140" rx="6" ry="4" fill="#e7ae43" opacity=".25"/>
+  <ellipse cx="148" cy="140" rx="6" ry="4" fill="#e7ae43" opacity=".25"/>
+</svg>
