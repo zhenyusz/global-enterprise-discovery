@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="A 10-minute microlearning module for writing focused security-hardening prompts for PosturePilot AI Assistant." />
   <title>Write Better Security Prompts | PosturePilot Learning Lab</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='15 4 170 172'><defs><radialGradient id='furGradF' cx='38%25' cy='22%25' r='85%25'><stop offset='0%25' stop-color='%23ffffff'/><stop offset='55%25' stop-color='%23f2f7fa'/><stop offset='100%25' stop-color='%23d3e2ea'/></radialGradient><linearGradient id='earGradF' x1='0' y1='0' x2='0' y2='1'><stop offset='0%25' stop-color='%23ffffff'/><stop offset='100%25' stop-color='%23dbe6ea'/></linearGradient><radialGradient id='eyeGradF' cx='35%25' cy='28%25' r='80%25'><stop offset='0%25' stop-color='%232c4b6c'/><stop offset='55%25' stop-color='%2312283f'/><stop offset='100%25' stop-color='%23081522'/></radialGradient></defs><path d='M68 98 C50 88 40 56 55 20 C74 34 86 70 89 100 C82 104 74 103 68 98 Z' fill='url%28%23earGradF%29' stroke='%23d8e1ea' stroke-width='1.5'/><path d='M132 98 C150 88 160 56 145 20 C126 34 114 70 111 100 C118 104 126 103 132 98 Z' fill='url%28%23earGradF%29' stroke='%23d8e1ea' stroke-width='1.5'/><path d='M69 90 C58 78 53 56 61 32 C72 44 78 68 80 92 Z' fill='%23e7f7f5'/><path d='M131 90 C142 78 147 56 139 32 C128 44 122 68 120 92 Z' fill='%23e7f7f5'/><path d='M82 46 C79 34 84 24 90 22 C88 32 89 42 92 50 Z' fill='url%28%23earGradF%29'/><path d='M94 40 C93 26 99 14 107 12 C104 24 104 36 106 46 Z' fill='url%28%23earGradF%29'/><path d='M110 44 C112 30 120 20 128 20 C124 30 122 40 122 50 Z' fill='url%28%23earGradF%29'/><path d='M100 46 C99 36 103 28 108 26 C107 34 107 42 108 50 Z' fill='url%28%23earGradF%29'/><ellipse cx='100' cy='112' rx='58' ry='54' fill='url%28%23furGradF%29'/><circle cx='78' cy='116' r='17' fill='url%28%23eyeGradF%29'/><circle cx='122' cy='116' r='17' fill='url%28%23eyeGradF%29'/><ellipse cx='72' cy='109' rx='5.4' ry='6.8' fill='%23ffffff' opacity='.92'/><ellipse cx='116' cy='109' rx='5.4' ry='6.8' fill='%23ffffff' opacity='.92'/><circle cx='82' cy='122' r='2.3' fill='%23ffffff' opacity='.55'/><circle cx='126' cy='122' r='2.3' fill='%23ffffff' opacity='.55'/><circle cx='78' cy='116' r='22' fill='none' stroke='%23173f63' stroke-width='3'/><circle cx='122' cy='116' r='22' fill='none' stroke='%23173f63' stroke-width='3'/><path d='M92 111 Q100 105 108 111' fill='none' stroke='%23173f63' stroke-width='3' stroke-linecap='round'/><path d='M56 118 Q47 116 42 120' fill='none' stroke='%23173f63' stroke-width='3' stroke-linecap='round'/><path d='M144 118 Q153 116 158 120' fill='none' stroke='%23173f63' stroke-width='3' stroke-linecap='round'/><ellipse cx='94' cy='144' rx='2.6' ry='1.9' fill='%234a5b6b' opacity='.75'/><ellipse cx='106' cy='144' rx='2.6' ry='1.9' fill='%234a5b6b' opacity='.75'/><path d='M94 151 Q100 155 106 151' fill='none' stroke='%234a5b6b' stroke-width='1.6' stroke-linecap='round' opacity='.65'/><ellipse cx='52' cy='140' rx='6' ry='4' fill='%23e7ae43' opacity='.25'/><ellipse cx='148' cy='140' rx='6' ry='4' fill='%23e7ae43' opacity='.25'/></svg>" />
   <style>
     :root {
       --ink: #152338;
@@ -208,6 +209,42 @@
     .feedback.show { display: block; }
     .feedback.good { color: #155b3b; background: var(--success-soft); border: 1px solid #b9dfca; }
 
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    .coach-shell { margin-top: 22px; border: 1px solid #bfe2df; border-radius: 14px; background: #fff; overflow: hidden; }
+    .coach-hero { display: flex; align-items: center; gap: 16px; padding: 18px 20px; background: linear-gradient(135deg, #ecfbfa, #f7fcff); border-bottom: 1px solid var(--line); }
+    .coach-hero svg { width: 72px; height: 94px; flex: 0 0 auto; display: block; }
+    .coach-hero p { margin: 0; color: var(--navy); font-weight: 750; font-size: .95rem; }
+    .coach-head { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-bottom: 1px solid var(--line); background: #f5fcfb; }
+    .coach-avatar { display: block; width: 44px; height: 44px; flex: 0 0 auto; }
+    .coach-avatar svg { display: block; width: 100%; height: 100%; }
+    .coach-head strong { display: block; color: var(--navy); font-size: .98rem; }
+    .coach-sub { color: var(--muted); font-size: .85rem; }
+
+    .element-checklist { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 14px 18px 0; }
+    .element-checklist li { display: inline-flex; align-items: center; gap: 7px; padding: 6px 11px; border: 1px solid var(--line); border-radius: 999px; font-size: .82rem; font-weight: 750; color: var(--muted); background: #f8fbfc; transition: background .2s ease, border-color .2s ease, color .2s ease; }
+    .chip-dot { width: 8px; height: 8px; border-radius: 50%; background: #c3cdd6; transition: background .2s ease; }
+    .element-checklist li.done { color: var(--teal-dark); border-color: #8ccfca; background: var(--teal-soft); }
+    .element-checklist li.done .chip-dot { background: var(--teal); }
+
+    .coach-dialog { max-height: 330px; overflow-y: auto; padding: 16px 18px; display: flex; flex-direction: column; gap: 11px; }
+    .coach-msg { max-width: 88%; padding: 11px 14px; border-radius: 14px; border: 1px solid var(--line); font-size: .93rem; }
+    .coach-msg .who { display: block; font-size: .72rem; font-weight: 800; letter-spacing: .03em; text-transform: uppercase; margin-bottom: 4px; }
+    .coach-msg.coach { align-self: flex-start; border-radius: 14px 14px 14px 3px; background: #eff8f7; border-color: #bfe2df; }
+    .coach-msg.coach .who { color: var(--teal-dark); }
+    .coach-msg.learner { align-self: flex-end; border-radius: 14px 14px 3px 14px; background: var(--surface-alt); border-color: var(--line); }
+    .coach-msg.learner .who { color: var(--navy); }
+    .coach-msg.typing { color: var(--muted); font-style: italic; }
+
+    .coach-input-row { padding: 14px 18px 18px; border-top: 1px solid var(--line); display: grid; gap: 10px; }
+    .coach-input-row textarea { width: 100%; min-height: 72px; resize: vertical; border: 1px solid #aabac9; border-radius: 10px; background: #fff; color: var(--ink); padding: 11px 12px; }
+    .coach-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+    .link-button { border: 0; background: none; color: var(--teal-dark); font-weight: 800; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .coach-msg { animation: none !important; }
+    }
+
     .review-card { width: min(var(--reading), 100%); }
     .review-list { display: grid; gap: 11px; margin-top: 16px; }
     .review-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
@@ -364,7 +401,7 @@
     <section id="lab">
       <div class="wrap">
         <div class="lab-shell">
-          <div class="lab-head"><h2>Practice lab: Ask PosturePilot the right question</h2><p>Build a prompt for Meridian Financial’s web-server review. Include all four prompt details, then check your work.</p></div>
+          <div class="lab-head"><h2>Practice lab: Chat with the PosturePilot Prompt Coach</h2><p>Draft a prompt for Meridian Financial’s web-server review in your own words. The coach will tell you what's already strong and what to add — cover all four prompt details to finish.</p></div>
           <div class="progress-wrap"><div class="progress-top"><span>Practice progress</span><span id="progressText">0 of 2 checks complete</span></div><div class="progress-bar" aria-label="Practice progress"><div class="progress-fill" id="progressFill"></div></div></div>
           <div class="lab-body">
             <div class="prompt-facts">
@@ -373,13 +410,186 @@
               <div class="prompt-fact"><strong>Context</strong>Internet-facing production server that hosts the customer account portal</div>
               <div class="prompt-fact"><strong>Deadline</strong>Vendor support ends in 60 days</div>
             </div>
-            <div class="prompt-preview" aria-live="polite"><h3>Model prompt</h3><p>Review web-server-01, an internet-facing production server that hosts Meridian Financial’s customer account portal.
+
+            <div class="coach-shell">
+              <div class="coach-hero">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" aria-hidden="true">
+                  <defs>
+                    <radialGradient id="furGrad" cx="38%" cy="22%" r="85%">
+                      <stop offset="0%" stop-color="#ffffff"/>
+                      <stop offset="55%" stop-color="#f2f7fa"/>
+                      <stop offset="100%" stop-color="#d3e2ea"/>
+                    </radialGradient>
+                    <linearGradient id="earGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#ffffff"/>
+                      <stop offset="100%" stop-color="#dbe6ea"/>
+                    </linearGradient>
+                    <radialGradient id="eyeGrad" cx="35%" cy="28%" r="80%">
+                      <stop offset="0%" stop-color="#2c4b6c"/>
+                      <stop offset="55%" stop-color="#12283f"/>
+                      <stop offset="100%" stop-color="#081522"/>
+                    </radialGradient>
+                  </defs>
+                
+                  <!-- ground shadow -->
+                  <ellipse cx="100" cy="250" rx="46" ry="7" fill="#102a43" opacity=".14"/>
+                
+                  <!-- feet -->
+                  <ellipse cx="86" cy="241" rx="8" ry="6" fill="#173f63"/>
+                  <ellipse cx="114" cy="241" rx="8" ry="6" fill="#173f63"/>
+                
+                  <!-- coat body -->
+                  <path d="M58 168 C54 168 50 176 50 190 L50 234 C50 239 55 242 61 242 L139 242 C145 242 150 239 150 234 L150 190 C150 176 146 168 142 168 L122 158 L100 172 L78 158 Z" fill="#ffffff" stroke="#d8e1ea" stroke-width="2"/>
+                
+                  <!-- lapels -->
+                  <path d="M100 172 L79 160 L86 196 L100 182 Z" fill="#f4f8fa" stroke="#d8e1ea" stroke-width="1.5"/>
+                  <path d="M100 172 L121 160 L114 196 L100 182 Z" fill="#f4f8fa" stroke="#d8e1ea" stroke-width="1.5"/>
+                
+                  <!-- buttons -->
+                  <circle cx="100" cy="208" r="2.6" fill="#c9d6de"/>
+                  <circle cx="100" cy="224" r="2.6" fill="#c9d6de"/>
+                
+                  <!-- pocket + pens -->
+                  <rect x="106" y="200" width="24" height="18" rx="2" fill="none" stroke="#d8e1ea" stroke-width="1.5"/>
+                  <rect x="110" y="188" width="3.2" height="16" rx="1.4" fill="#e7ae43" transform="rotate(-8 110 196)"/>
+                  <rect x="116" y="187" width="3.2" height="17" rx="1.4" fill="#0c8a87" transform="rotate(-2 116 195)"/>
+                  <rect x="122" y="188" width="3.2" height="16" rx="1.4" fill="#102a43" transform="rotate(6 122 196)"/>
+                
+                  <!-- stethoscope -->
+                  <path d="M72 168 C70 190 82 202 100 203 C118 202 130 190 128 168" fill="none" stroke="#0c8a87" stroke-width="4.5" stroke-linecap="round"/>
+                  <path d="M100 203 L100 216" fill="none" stroke="#0c8a87" stroke-width="4.5" stroke-linecap="round"/>
+                  <circle cx="72" cy="166" r="4" fill="#173f63"/>
+                  <circle cx="128" cy="166" r="4" fill="#173f63"/>
+                  <circle cx="100" cy="222" r="7.5" fill="#173f63"/>
+                  <circle cx="100" cy="222" r="3.4" fill="#e7f7f5"/>
+                
+                  <!-- arms (coat sleeves, resting) -->
+                  <ellipse cx="54" cy="205" rx="14" ry="18" fill="url(#furGrad)" stroke="#d8e1ea" stroke-width="1.5" transform="rotate(10 54 205)"/>
+                  <ellipse cx="146" cy="205" rx="14" ry="18" fill="url(#furGrad)" stroke="#d8e1ea" stroke-width="1.5" transform="rotate(-10 146 205)"/>
+                
+                  <!-- ears -->
+                  <path d="M68 98 C50 88 40 56 55 20 C74 34 86 70 89 100 C82 104 74 103 68 98 Z" fill="url(#earGrad)" stroke="#d8e1ea" stroke-width="1.5"/>
+                  <path d="M132 98 C150 88 160 56 145 20 C126 34 114 70 111 100 C118 104 126 103 132 98 Z" fill="url(#earGrad)" stroke="#d8e1ea" stroke-width="1.5"/>
+                  <path d="M69 90 C58 78 53 56 61 32 C72 44 78 68 80 92 Z" fill="#e7f7f5"/>
+                  <path d="M131 90 C142 78 147 56 139 32 C128 44 122 68 120 92 Z" fill="#e7f7f5"/>
+                
+                  <!-- forehead fringe -->
+                  <path d="M82 46 C79 34 84 24 90 22 C88 32 89 42 92 50 Z" fill="url(#earGrad)"/>
+                  <path d="M94 40 C93 26 99 14 107 12 C104 24 104 36 106 46 Z" fill="url(#earGrad)"/>
+                  <path d="M110 44 C112 30 120 20 128 20 C124 30 122 40 122 50 Z" fill="url(#earGrad)"/>
+                  <path d="M100 46 C99 36 103 28 108 26 C107 34 107 42 108 50 Z" fill="url(#earGrad)"/>
+                
+                  <!-- head -->
+                  <ellipse cx="100" cy="112" rx="58" ry="54" fill="url(#furGrad)"/>
+                
+                  <!-- eyes -->
+                  <circle cx="78" cy="116" r="17" fill="url(#eyeGrad)"/>
+                  <circle cx="122" cy="116" r="17" fill="url(#eyeGrad)"/>
+                  <ellipse cx="72" cy="109" rx="5.4" ry="6.8" fill="#ffffff" opacity=".92"/>
+                  <ellipse cx="116" cy="109" rx="5.4" ry="6.8" fill="#ffffff" opacity=".92"/>
+                  <circle cx="82" cy="122" r="2.3" fill="#ffffff" opacity=".55"/>
+                  <circle cx="126" cy="122" r="2.3" fill="#ffffff" opacity=".55"/>
+                
+                  <!-- glasses (round wire frames) -->
+                  <circle cx="78" cy="116" r="22" fill="none" stroke="#173f63" stroke-width="3"/>
+                  <circle cx="122" cy="116" r="22" fill="none" stroke="#173f63" stroke-width="3"/>
+                  <path d="M100 114 Q100 108 100 114" stroke="#173f63" stroke-width="3" fill="none"/>
+                  <path d="M92 111 Q100 105 108 111" fill="none" stroke="#173f63" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M56 118 Q47 116 42 120" fill="none" stroke="#173f63" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M144 118 Q153 116 158 120" fill="none" stroke="#173f63" stroke-width="3" stroke-linecap="round"/>
+                
+                  <!-- nose + mouth -->
+                  <ellipse cx="94" cy="144" rx="2.6" ry="1.9" fill="#4a5b6b" opacity=".75"/>
+                  <ellipse cx="106" cy="144" rx="2.6" ry="1.9" fill="#4a5b6b" opacity=".75"/>
+                  <path d="M94 151 Q100 155 106 151" fill="none" stroke="#4a5b6b" stroke-width="1.6" stroke-linecap="round" opacity=".65"/>
+                
+                  <!-- blush -->
+                  <ellipse cx="52" cy="140" rx="6" ry="4" fill="#e7ae43" opacity=".25"/>
+                  <ellipse cx="148" cy="140" rx="6" ry="4" fill="#e7ae43" opacity=".25"/>
+                </svg>
+                <p>Meet your practice partner. It's seen a lot of prompts, has strong opinions about specificity, and is ready to review your first draft below.</p>
+              </div>
+              <div class="coach-head">
+                <span class="coach-avatar" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="15 4 170 172">
+                    <defs>
+                      <radialGradient id="furGrad2" cx="38%" cy="22%" r="85%">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="55%" stop-color="#f2f7fa"/>
+                        <stop offset="100%" stop-color="#d3e2ea"/>
+                      </radialGradient>
+                      <linearGradient id="earGrad2" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="100%" stop-color="#dbe6ea"/>
+                      </linearGradient>
+                      <radialGradient id="eyeGrad2" cx="35%" cy="28%" r="80%">
+                        <stop offset="0%" stop-color="#2c4b6c"/>
+                        <stop offset="55%" stop-color="#12283f"/>
+                        <stop offset="100%" stop-color="#081522"/>
+                      </radialGradient>
+                    </defs>
+                  
+                    <path d="M68 98 C50 88 40 56 55 20 C74 34 86 70 89 100 C82 104 74 103 68 98 Z" fill="url(#earGrad2)" stroke="#d8e1ea" stroke-width="1.5"/>
+                    <path d="M132 98 C150 88 160 56 145 20 C126 34 114 70 111 100 C118 104 126 103 132 98 Z" fill="url(#earGrad2)" stroke="#d8e1ea" stroke-width="1.5"/>
+                    <path d="M69 90 C58 78 53 56 61 32 C72 44 78 68 80 92 Z" fill="#e7f7f5"/>
+                    <path d="M131 90 C142 78 147 56 139 32 C128 44 122 68 120 92 Z" fill="#e7f7f5"/>
+                  
+                    <path d="M82 46 C79 34 84 24 90 22 C88 32 89 42 92 50 Z" fill="url(#earGrad2)"/>
+                    <path d="M94 40 C93 26 99 14 107 12 C104 24 104 36 106 46 Z" fill="url(#earGrad2)"/>
+                    <path d="M110 44 C112 30 120 20 128 20 C124 30 122 40 122 50 Z" fill="url(#earGrad2)"/>
+                    <path d="M100 46 C99 36 103 28 108 26 C107 34 107 42 108 50 Z" fill="url(#earGrad2)"/>
+                  
+                    <ellipse cx="100" cy="112" rx="58" ry="54" fill="url(#furGrad2)"/>
+                  
+                    <circle cx="78" cy="116" r="17" fill="url(#eyeGrad2)"/>
+                    <circle cx="122" cy="116" r="17" fill="url(#eyeGrad2)"/>
+                    <ellipse cx="72" cy="109" rx="5.4" ry="6.8" fill="#ffffff" opacity=".92"/>
+                    <ellipse cx="116" cy="109" rx="5.4" ry="6.8" fill="#ffffff" opacity=".92"/>
+                    <circle cx="82" cy="122" r="2.3" fill="#ffffff" opacity=".55"/>
+                    <circle cx="126" cy="122" r="2.3" fill="#ffffff" opacity=".55"/>
+                  
+                    <circle cx="78" cy="116" r="22" fill="none" stroke="#173f63" stroke-width="3"/>
+                    <circle cx="122" cy="116" r="22" fill="none" stroke="#173f63" stroke-width="3"/>
+                    <path d="M92 111 Q100 105 108 111" fill="none" stroke="#173f63" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M56 118 Q47 116 42 120" fill="none" stroke="#173f63" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M144 118 Q153 116 158 120" fill="none" stroke="#173f63" stroke-width="3" stroke-linecap="round"/>
+                  
+                    <ellipse cx="94" cy="144" rx="2.6" ry="1.9" fill="#4a5b6b" opacity=".75"/>
+                    <ellipse cx="106" cy="144" rx="2.6" ry="1.9" fill="#4a5b6b" opacity=".75"/>
+                    <path d="M94 151 Q100 155 106 151" fill="none" stroke="#4a5b6b" stroke-width="1.6" stroke-linecap="round" opacity=".65"/>
+                  
+                    <ellipse cx="52" cy="140" rx="6" ry="4" fill="#e7ae43" opacity=".25"/>
+                    <ellipse cx="148" cy="140" rx="6" ry="4" fill="#e7ae43" opacity=".25"/>
+                </svg></span>
+                <div>
+                  <strong>PosturePilot Prompt Coach</strong>
+                  <span class="coach-sub">A practice partner that checks your draft locally in your browser — no data leaves this page.</span>
+                </div>
+              </div>
+
+              <ul class="element-checklist" id="elementChecklist" aria-label="Prompt elements covered">
+                <li data-key="asset"><span class="chip-dot" aria-hidden="true"></span>Asset</li>
+                <li data-key="info"><span class="chip-dot" aria-hidden="true"></span>Information to review</li>
+                <li data-key="context"><span class="chip-dot" aria-hidden="true"></span>Context</li>
+                <li data-key="deadline"><span class="chip-dot" aria-hidden="true"></span>Deadline</li>
+              </ul>
+
+              <div class="coach-dialog" id="coachDialog" aria-live="polite"></div>
+
+              <div class="coach-input-row">
+                <label class="sr-only" for="draftInput">Your draft prompt to PosturePilot</label>
+                <textarea id="draftInput" placeholder="Type the prompt you'd send to PosturePilot about web-server-01…"></textarea>
+                <div class="coach-actions">
+                  <button class="action-button" id="sendDraft" type="button">Send to Prompt Coach</button>
+                  <button class="link-button" id="showModel" type="button">See a model prompt</button>
+                </div>
+              </div>
+
+              <div class="prompt-preview" id="modelPreview" hidden><h3>Model prompt</h3><p>Review web-server-01, an internet-facing production server that hosts Meridian Financial’s customer account portal.
 
 Review vendor support status, missing security updates, internet exposure, and centralized log-forwarding status.
 
 Identify hardening items to review before vendor support ends in 60 days. Separate confirmed findings from items that still need validation.</p></div>
-            <div class="action-row"><button class="action-button" id="checkPrompt" type="button">Check my prompt</button><span class="help">Compare your draft to the model prompt above.</span></div>
-            <div class="feedback good" id="promptFeedback" role="status"><strong>Strong prompt.</strong> It identifies the asset, security information, operating context, and deadline. It also asks PosturePilot to separate confirmed findings from items that still need validation.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -414,7 +624,6 @@ Identify hardening items to review before vendor support ends in 60 days. Separa
   <script>
     const progressFill = document.getElementById('progressFill');
     const progressText = document.getElementById('progressText');
-    const promptFeedback = document.getElementById('promptFeedback');
     const reviewResult = document.getElementById('reviewResult');
     const completion = document.getElementById('completion');
     let promptChecked = false;
@@ -427,11 +636,136 @@ Identify hardening items to review before vendor support ends in 60 days. Separa
       if (complete === 2) completion.classList.add('show');
     }
 
-    document.getElementById('checkPrompt').addEventListener('click', () => {
-      promptChecked = true;
-      promptFeedback.classList.add('show');
-      updateProgress();
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    // --- PosturePilot Prompt Coach --------------------------------------
+    // A local, rule-based practice partner: it pattern-matches the learner's
+    // draft against the four prompt elements for this scenario and coaches
+    // toward the gaps. No network calls, no external model — everything
+    // runs in this page, consistent with the rest of this prototype.
+    const ELEMENT_ORDER = ['asset', 'info', 'context', 'deadline'];
+    const ELEMENT_LABEL = { asset: 'the asset', info: 'what to review', context: 'the context', deadline: 'the deadline' };
+    const ELEMENT_KEYWORDS = {
+      asset: ['web-server-01', 'web server 01', 'account portal'],
+      info: ['vendor support', 'security update', 'missing update', 'patch', 'internet exposure', 'internet-facing', 'log', 'forward'],
+      context: ['production', 'internet-facing', 'internet facing', 'customer account portal', 'portal', 'customer-facing', 'meridian'],
+      deadline: ['60 day', '60-day', 'deadline', 'support ends', 'vendor support ends', 'timeline', 'time frame', 'timeframe', 'before vendor']
+    };
+    const COACH_NUDGE = {
+      asset: 'name the exact asset — which server or system is this about?',
+      info: 'say what you want PosturePilot to review (vendor support, patches, exposure, logging…).',
+      context: 'add context — where does it run, and why does that matter?',
+      deadline: 'add a timeframe — is there a deadline this review needs to respect?'
+    };
+
+    const coachState = { covered: { asset: false, info: false, context: false, deadline: false }, done: false };
+    let typingTimer = null;
+
+    function detectElements(text) {
+      const t = ' ' + text.toLowerCase() + ' ';
+      const found = [];
+      ELEMENT_ORDER.forEach(key => {
+        if (coachState.covered[key]) return;
+        if (ELEMENT_KEYWORDS[key].some(kw => t.indexOf(kw) > -1)) found.push(key);
+      });
+      return found;
+    }
+
+    function updateChecklist() {
+      ELEMENT_ORDER.forEach(key => {
+        const li = document.querySelector(`#elementChecklist li[data-key="${key}"]`);
+        if (li) li.classList.toggle('done', !!coachState.covered[key]);
+      });
+    }
+
+    function addCoachBubble(kind, speaker, html) {
+      const wrap = document.getElementById('coachDialog');
+      const d = document.createElement('div');
+      d.className = 'coach-msg ' + kind;
+      d.innerHTML = `<span class="who">${escapeHtml(speaker)}</span>${html}`;
+      wrap.appendChild(d);
+      wrap.scrollTop = wrap.scrollHeight;
+      return d;
+    }
+
+    function addCoachTyping(then) {
+      const wrap = document.getElementById('coachDialog');
+      const t = document.createElement('div');
+      t.className = 'coach-msg coach typing';
+      t.id = 'coachTyping';
+      t.innerHTML = '<span class="who">PosturePilot Prompt Coach</span>typing…';
+      wrap.appendChild(t);
+      wrap.scrollTop = wrap.scrollHeight;
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(() => {
+        const existing = document.getElementById('coachTyping');
+        if (existing) existing.remove();
+        then();
+      }, prefersReduced ? 0 : 450);
+    }
+
+    function missingElements() {
+      return ELEMENT_ORDER.filter(k => !coachState.covered[k]);
+    }
+
+    function respondToDraft(text) {
+      const newly = detectElements(text);
+      newly.forEach(k => { coachState.covered[k] = true; });
+      updateChecklist();
+
+      const missing = missingElements();
+      let msg = newly.length
+        ? `Good — this covers ${newly.map(k => ELEMENT_LABEL[k]).join(' and ')}. `
+        : `I didn't find anything new in that draft. `;
+
+      if (missing.length) {
+        msg += `Still missing: ${missing.map(k => ELEMENT_LABEL[k]).join(', ')}. Try this next — ${COACH_NUDGE[missing[0]]}`;
+        addCoachTyping(() => addCoachBubble('coach', 'PosturePilot Prompt Coach', escapeHtml(msg)));
+      } else {
+        msg += 'That covers all four elements — asset, what to review, context, and deadline. This is ready to send to PosturePilot.';
+        addCoachTyping(() => {
+          addCoachBubble('coach', 'PosturePilot Prompt Coach', escapeHtml(msg));
+          if (!coachState.done) {
+            coachState.done = true;
+            promptChecked = true;
+            updateProgress();
+          }
+        });
+      }
+    }
+
+    function seedCoach() {
+      addCoachBubble('coach', 'PosturePilot Prompt Coach', escapeHtml("Draft a prompt for the web-server-01 review whenever you're ready. I'll tell you what's already strong and what to add — try to cover the asset, what to review, the context, and any deadline."));
+    }
+
+    document.getElementById('sendDraft').addEventListener('click', () => {
+      const input = document.getElementById('draftInput');
+      const text = input.value.trim();
+      if (!text) return;
+      addCoachBubble('learner', 'You', escapeHtml(text).replace(/\n/g, '<br>'));
+      input.value = '';
+      input.focus();
+      respondToDraft(text);
     });
+
+    document.getElementById('draftInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        document.getElementById('sendDraft').click();
+      }
+    });
+
+    document.getElementById('showModel').addEventListener('click', function () {
+      const el = document.getElementById('modelPreview');
+      el.hidden = !el.hidden;
+      this.textContent = el.hidden ? 'See a model prompt' : 'Hide the model prompt';
+    });
+
+    seedCoach();
+    // ---------------------------------------------------------------------
 
     document.getElementById('checkReview').addEventListener('click', () => {
       const items = [...document.querySelectorAll('.review-item')];
